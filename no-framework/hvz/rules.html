@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules - HvZ New Paltz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="zombie-walk" style="animation-delay: 3s;">🧟</div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rules.html" class="active">Rules</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="survival.html">Survival Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="padding-bottom: 2rem;">
+            <h1>📜 The Rules</h1>
+            <p class="subtitle">Know them. Follow them. <span>Survive them.</span></p>
+        </section>
+
+        <!-- Quick overview cards -->
+        <div class="grid grid-2" style="margin-bottom: 3rem;">
+            <div class="card" style="border-color: var(--human-blue);">
+                <h3 style="color: var(--human-blue);">👤 If You're Human</h3>
+                <ul style="list-style: none; line-height: 2;">
+                    <li>✓ Wear your bandana on your arm</li>
+                    <li>✓ Carry your ID card at all times</li>
+                    <li>✓ Use blasters/socks to stun zombies</li>
+                    <li>✓ Complete missions to earn bonuses</li>
+                    <li>✓ Avoid being tagged by zombies</li>
+                </ul>
+            </div>
+            <div class="card" style="border-color: var(--zombie-green);">
+                <h3>🧟 If You're Zombie</h3>
+                <ul style="list-style: none; line-height: 2;">
+                    <li>✓ Wear your bandana on your head</li>
+                    <li>✓ Tag humans to convert them</li>
+                    <li>✓ Report tags within 1 hour</li>
+                    <li>✓ Stunned = 15 min timeout</li>
+                    <li>✓ Feed every 48 hours or starve out</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detailed rules accordion -->
+        <section>
+            <div class="section-header">
+                <h2>📖 Complete Rulebook</h2>
+                <p>Click each section to expand</p>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🎮 Basic Gameplay</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Humans vs Zombies is a game of tag played across campus. All players start as humans 
+                            except for one "Original Zombie" (OZ). Zombies try to tag humans to convert them. 
+                            Humans defend themselves with Nerf blasters and sock balls. The game runs 24/7 for 
+                            one week. Safe zones include: inside buildings, dining halls during meals, classrooms 
+                            during class, and residence hall rooms. The outdoor areas of campus are always active!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🎯 Tagging Rules</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            <strong>For Zombies:</strong> A tag is a firm touch on any part of the human's body 
+                            or clothes. Once tagged, the human must give you their ID code. Report the tag on 
+                            the website within 1 hour. You cannot tag while stunned.<br><br>
+                            <strong>For Humans:</strong> When tagged, you become a zombie immediately. Move your 
+                            bandana to your head. Wait 15 minutes before you can start hunting. This is your 
+                            "transformation period."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🔫 Approved Equipment</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            <strong>Approved Blasters:</strong> Any Nerf-brand or equivalent foam dart blaster. 
+                            No modifications that increase power. Must pass moderator inspection.<br><br>
+                            <strong>Sock Balls:</strong> Rolled-up socks. Must be soft and throwable. No weights 
+                            or hard objects inside.<br><br>
+                            <strong>NOT Allowed:</strong> Airsoft, paintball, water guns, melee weapons, shields, 
+                            or any modified equipment. When in doubt, ask a moderator!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>⚡ Stunning Zombies</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Hit a zombie with a dart or sock to stun them. Stunned zombies must sit down or 
+                            kneel and count to 15 minutes (or set a timer). They cannot move, tag, or 
+                            interfere with gameplay while stunned. Zombies must be honest about being stunned! 
+                            Disputes should be reported to moderators. Multiple hits don't extend stun time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🏠 Safe Zones</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            <strong>Always Safe:</strong><br>
+                            • Inside any academic building<br>
+                            • Residence hall rooms (not hallways)<br>
+                            • Dining halls during meal hours<br>
+                            • Library during finals week<br>
+                            • Any classroom during scheduled class<br>
+                            • Campus shuttles and buses<br><br>
+                            <strong>Never Safe:</strong><br>
+                            • Parking lots<br>
+                            • The quad and all outdoor areas<br>
+                            • Building lobbies and hallways<br>
+                            • Athletic fields (except during official games)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🎭 The Original Zombie (OZ)</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            The OZ starts the outbreak. Their identity is SECRET for the first 48 hours. 
+                            They wear their bandana on their arm like a human but are actually a zombie. 
+                            After 48 hours or once they make 3 tags (whichever comes first), they must 
+                            reveal themselves and wear the bandana on their head. The OZ is immune to 
+                            starvation for the first 3 days.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>💀 Zombie Starvation</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Zombies must feed (successfully tag a human) at least once every 48 hours or 
+                            they "starve" and are eliminated from the game. Starved zombies can return as 
+                            "spectator zombies" who can participate in missions but cannot tag humans. 
+                            This mechanic prevents zombies from hiding and waiting until the end of the game.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>🎯 Missions</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            Special missions run throughout the game. These are announced via the website 
+                            and Discord. Mission types include:<br><br>
+                            • <strong>Escort:</strong> Protect a VIP from point A to B<br>
+                            • <strong>Capture:</strong> Hold a location for a set time<br>
+                            • <strong>Retrieval:</strong> Find and return objects to base<br>
+                            • <strong>Siege:</strong> All-out battle at a specific location<br><br>
+                            Completing missions earns points and can unlock special abilities!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h4>⚠️ Code of Conduct</h4>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>
+                            • No playing in prohibited areas (labs, offices, etc.)<br>
+                            • No physical force beyond a light tag<br>
+                            • No entering someone's personal vehicle or residence<br>
+                            • No interfering with non-players<br>
+                            • No lying about tags or stuns (honor system!)<br>
+                            • Respect moderator decisions<br>
+                            • Most importantly: HAVE FUN and be a good sport!<br><br>
+                            <strong style="color: var(--blood-red);">Violations may result in removal from the game.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick FAQ -->
+        <section style="margin-top: 3rem;">
+            <div class="section-header">
+                <h2>❓ Quick FAQ</h2>
+                <p>Common questions answered</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 style="font-size: 1.2rem;">Can I play if I have class?</h3>
+                    <p>Absolutely! Classrooms are safe zones during class. Just plan your routes carefully between buildings!</p>
+                </div>
+                <div class="card">
+                    <h3 style="font-size: 1.2rem;">What if I can't afford a blaster?</h3>
+                    <p>Sock balls are free! We also have a loaner program. No one is excluded for financial reasons.</p>
+                </div>
+                <div class="card">
+                    <h3 style="font-size: 1.2rem;">Can zombies run?</h3>
+                    <p>Yes! Zombies can run, walk, or shamble - your choice. But be careful not to trip!</p>
+                </div>
+                <div class="card">
+                    <h3 style="font-size: 1.2rem;">What if there's a dispute?</h3>
+                    <p>Contact a moderator via Discord or the website. We'll resolve it fairly. When in doubt, play it out!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- rules quiz teaser -->
+        <section style="margin-top: 3rem; text-align: center;">
+            <div class="card">
+                <h3>🧠 Think You Know the Rules?</h3>
+                <p style="margin-bottom: 1.5rem;">Test your knowledge with our Survival Quiz!</p>
+                <a href="survival.html#quiz" class="btn btn-primary">Take the Quiz</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+            });
+            
+            // Open clicked one if it wasn't already open
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

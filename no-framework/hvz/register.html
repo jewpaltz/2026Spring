@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HvZ New Paltz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="zombie-walk" style="animation-delay: 7s;">🧟</div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="survival.html">Survival Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="padding-bottom: 2rem;">
+            <h1>🎮 Join the Game</h1>
+            <p class="subtitle">Register for Spring 2026 - <span>The Awakening</span></p>
+        </section>
+
+        <!-- Registration stats -->
+        <div class="stats" style="margin-bottom: 3rem;">
+            <div class="stat-box">
+                <span class="stat-number" style="color: var(--warning-orange);" id="spots-left">47</span>
+                <span class="stat-label">Spots Left</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number human">153</span>
+                <span class="stat-label">Registered</span>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <!-- Registration Form -->
+            <div>
+                <div class="card">
+                    <h3>📝 Registration Form</h3>
+                    
+                    <form id="registration-form" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Campus Email *</label>
+                            <input type="email" id="email" required placeholder="yourname@hawkmail.newpaltz.edu">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="For emergency notifications">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="player-name">Player Name / Alias *</label>
+                            <input type="text" id="player-name" required placeholder="Choose your battlefield name">
+                            <small style="color: var(--text-muted);">This is how you'll appear on the leaderboard</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred Starting Role</label>
+                            <div class="team-select" id="team-select">
+                                <div class="team-option human" onclick="selectTeam('human')">
+                                    <div class="icon">👤</div>
+                                    <h4>Human</h4>
+                                    <small style="color: var(--text-muted);">Survive!</small>
+                                </div>
+                                <div class="team-option zombie" onclick="selectTeam('zombie')">
+                                    <div class="icon">🧟</div>
+                                    <h4>OZ Volunteer</h4>
+                                    <small style="color: var(--text-muted);">Start the horde</small>
+                                </div>
+                            </div>
+                            <input type="hidden" id="team-preference" value="human">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Previous HvZ Experience</label>
+                            <select id="experience">
+                                <option value="none">First time player! 🆕</option>
+                                <option value="1-2">Played 1-2 games</option>
+                                <option value="3-5">Played 3-5 games</option>
+                                <option value="veteran">HvZ Veteran (5+)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blaster">Do you have a blaster?</label>
+                            <select id="blaster">
+                                <option value="yes">Yes, I'm locked and loaded!</option>
+                                <option value="no">No, I need to borrow one</option>
+                                <option value="socks">I'm a sock ball warrior</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="rules-agree" required style="width: auto;">
+                                I have read and agree to the <a href="rules.html" style="color: var(--zombie-green);">rules</a>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="waiver" required style="width: auto;">
+                                I accept the liability waiver and promise not to sue if a zombie eats my brain
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Register Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Info sidebar -->
+            <div>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>📅 Important Dates</h3>
+                    <ul style="list-style: none; line-height: 2.5;">
+                        <li>📝 <strong>Registration Deadline:</strong> March 10, 2026</li>
+                        <li>🎒 <strong>Gear Check:</strong> March 13, 2026 @ Student Union</li>
+                        <li>📍 <strong>Opening Ceremony:</strong> March 14, 2026 @ 7 PM</li>
+                        <li>🧟 <strong>Game Starts:</strong> March 15, 2026 @ 12:00 PM</li>
+                        <li>🏆 <strong>Final Stand:</strong> March 22, 2026 @ 6 PM</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>🎁 What You Get</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>✓ Official HvZ Bandana</li>
+                        <li>✓ Unique Player ID Card</li>
+                        <li>✓ Access to all missions</li>
+                        <li>✓ Discord server access</li>
+                        <li>✓ Free entry to closing party</li>
+                        <li>✓ Eternal bragging rights</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="background: rgba(220, 38, 38, 0.1); border-color: var(--blood-red);">
+                    <h3 style="color: var(--blood-red);">⚠️ Want to be Original Zombie?</h3>
+                    <p style="margin-bottom: 1rem;">
+                        Being the OZ is a big responsibility! You start the entire outbreak and must 
+                        stay secret for 48 hours. Only experienced players should apply.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        We'll contact OZ volunteers before the game to discuss strategy.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success modal -->
+        <div id="success-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;">
+            <div class="card" style="max-width: 500px; text-align: center;">
+                <h2 style="font-family: 'Creepster', cursive; font-size: 2.5rem; color: var(--zombie-green); margin-bottom: 1rem;">
+                    🎉 You're In!
+                </h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    Registration successful, <span id="player-display" style="color: var(--zombie-green);"></span>!
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Check your email for confirmation and your unique player ID.
+                    See you at the Opening Ceremony!
+                </p>
+                <div id="confirmation-animation" style="font-size: 4rem; margin: 1rem 0;">
+                    <!-- Animated based on team choice -->
+                </div>
+                <button class="btn btn-primary" onclick="closeModal()">Got it!</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+        </p>
+    </footer>
+
+    <script>
+        let selectedTeam = 'human';
+
+        function selectTeam(team) {
+            selectedTeam = team;
+            document.getElementById('team-preference').value = team;
+            
+            document.querySelectorAll('.team-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            document.querySelector(`.team-option.${team}`).classList.add('selected');
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const playerName = document.getElementById('player-name').value;
+            
+            // Show success modal
+            document.getElementById('success-modal').style.display = 'flex';
+            document.getElementById('player-display').textContent = playerName;
+            
+            // Show appropriate animation
+            const animation = document.getElementById('confirmation-animation');
+            if (selectedTeam === 'zombie') {
+                animation.innerHTML = '🧟‍♂️🧟‍♀️🧟';
+                animation.style.animation = 'shake 0.5s infinite';
+            } else {
+                animation.innerHTML = '👤🔫✨';
+            }
+            
+            // Update spots left
+            const spots = document.getElementById('spots-left');
+            spots.textContent = parseInt(spots.textContent) - 1;
+            
+            // Reset form
+            document.getElementById('registration-form').reset();
+            document.querySelectorAll('.team-option').forEach(opt => opt.classList.remove('selected'));
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        // Easter egg: Konami code unlocks secret OZ mode
+        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    alert('🧟 SECRET UNLOCKED: You have been added to the OZ priority list! 🧟');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+    </script>
+</body>
+</html>

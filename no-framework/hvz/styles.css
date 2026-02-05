@@ -1,0 +1,778 @@
+/* Humans vs Zombies - New Paltz */
+/* Apocalyptic Theme Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --zombie-green: #4ade80;
+    --blood-red: #dc2626;
+    --dark-bg: #0f0f0f;
+    --darker-bg: #050505;
+    --text-light: #e5e5e5;
+    --text-muted: #9ca3af;
+    --human-blue: #3b82f6;
+    --warning-orange: #f97316;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animated background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 80%, rgba(74, 222, 128, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+    z-index: -1;
+    animation: pulse-bg 8s ease-in-out infinite;
+}
+
+@keyframes pulse-bg {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Navigation */
+nav {
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--zombie-green);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+}
+
+nav .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-family: 'Creepster', cursive;
+    font-size: 1.8rem;
+    color: var(--zombie-green);
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+    transition: all 0.3s ease;
+}
+
+nav .logo:hover {
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+    transform: scale(1.05);
+}
+
+nav .logo span {
+    color: var(--blood-red);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: var(--zombie-green);
+    background: rgba(74, 222, 128, 0.1);
+}
+
+nav ul li a.active {
+    color: var(--zombie-green);
+    border-bottom: 2px solid var(--zombie-green);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--zombie-green), var(--blood-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: title-glow 3s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.5)); }
+    50% { filter: drop-shadow(0 0 40px rgba(220, 38, 38, 0.5)); }
+}
+
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.hero .subtitle span {
+    color: var(--human-blue);
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--zombie-green), #22c55e);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(74, 222, 128, 0.6);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--blood-red), #ef4444);
+    color: white;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+}
+
+.btn-danger:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--zombie-green);
+}
+
+.btn-secondary:hover {
+    background: rgba(74, 222, 128, 0.2);
+}
+
+/* Cards */
+.card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--zombie-green);
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.2);
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-family: 'Creepster', cursive;
+    font-size: 1.5rem;
+    color: var(--zombie-green);
+    margin-bottom: 1rem;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Stats Counter */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Creepster', cursive;
+    font-size: 3rem;
+    display: block;
+}
+
+.stat-number.human {
+    color: var(--human-blue);
+}
+
+.stat-number.zombie {
+    color: var(--zombie-green);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    text-align: center;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--zombie-green);
+    min-width: 100px;
+}
+
+.countdown-item .number {
+    font-family: 'Creepster', cursive;
+    font-size: 3rem;
+    color: var(--zombie-green);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.countdown-item .label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(74, 222, 128, 0.3);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--zombie-green);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.3);
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Accordion */
+.accordion {
+    margin: 2rem 0;
+}
+
+.accordion-item {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(74, 222, 128, 0.1);
+}
+
+.accordion-header h4 {
+    color: var(--zombie-green);
+    font-size: 1.1rem;
+}
+
+.accordion-header .icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-header .icon {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+}
+
+.accordion-content p {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Tables */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+}
+
+.leaderboard-table th {
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--zombie-green);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.leaderboard-table tr {
+    border-bottom: 1px solid rgba(74, 222, 128, 0.1);
+    transition: all 0.3s ease;
+}
+
+.leaderboard-table tr:hover {
+    background: rgba(74, 222, 128, 0.05);
+}
+
+.leaderboard-table .rank-1 {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.leaderboard-table .rank-2 {
+    background: rgba(192, 192, 192, 0.1);
+}
+
+.leaderboard-table .rank-3 {
+    background: rgba(205, 127, 50, 0.1);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-human {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--human-blue);
+}
+
+.badge-zombie {
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--zombie-green);
+}
+
+/* Quiz */
+.quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.quiz-question {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    margin-bottom: 2rem;
+}
+
+.quiz-question h3 {
+    color: var(--zombie-green);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quiz-option {
+    padding: 1rem 1.5rem;
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(74, 222, 128, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    border-color: var(--zombie-green);
+    background: rgba(74, 222, 128, 0.1);
+}
+
+.quiz-option.selected {
+    border-color: var(--zombie-green);
+    background: rgba(74, 222, 128, 0.2);
+}
+
+.quiz-option.correct {
+    border-color: var(--zombie-green);
+    background: rgba(74, 222, 128, 0.3);
+}
+
+.quiz-option.incorrect {
+    border-color: var(--blood-red);
+    background: rgba(220, 38, 38, 0.3);
+}
+
+.quiz-result {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 12px;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.quiz-result h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-result.survivor h2 {
+    color: var(--human-blue);
+}
+
+.quiz-result.zombie h2 {
+    color: var(--zombie-green);
+}
+
+/* Progress Bar */
+.progress-bar {
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+    height: 30px;
+    overflow: hidden;
+    margin: 1rem 0;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.progress-fill {
+    height: 100%;
+    display: flex;
+    transition: width 0.5s ease;
+}
+
+.progress-humans {
+    background: linear-gradient(90deg, var(--human-blue), #60a5fa);
+}
+
+.progress-zombies {
+    background: linear-gradient(90deg, var(--zombie-green), #86efac);
+}
+
+/* Footer */
+footer {
+    background: rgba(5, 5, 5, 0.95);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+    border-top: 2px solid var(--zombie-green);
+}
+
+footer p {
+    color: var(--text-muted);
+}
+
+footer a {
+    color: var(--zombie-green);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake:hover {
+    animation: shake 0.3s ease-in-out;
+}
+
+/* Zombie Walking Animation */
+.zombie-walk {
+    position: fixed;
+    bottom: 0;
+    font-size: 3rem;
+    animation: walk 20s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+@keyframes walk {
+    0% { left: -100px; }
+    100% { left: 100%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .stats {
+        gap: 2rem;
+    }
+    
+    .countdown {
+        gap: 1rem;
+    }
+    
+    .countdown-item {
+        min-width: 80px;
+        padding: 1rem;
+    }
+    
+    .countdown-item .number {
+        font-size: 2rem;
+    }
+}
+
+/* Section headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+    color: var(--zombie-green);
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Team Selection */
+.team-select {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.team-option {
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 3px solid transparent;
+}
+
+.team-option.human {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.team-option.human:hover,
+.team-option.human.selected {
+    border-color: var(--human-blue);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.team-option.zombie {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.team-option.zombie:hover,
+.team-option.zombie.selected {
+    border-color: var(--zombie-green);
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
+}
+
+.team-option .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.team-option h4 {
+    font-family: 'Creepster', cursive;
+    font-size: 1.5rem;
+}
+
+.team-option.human h4 {
+    color: var(--human-blue);
+}
+
+.team-option.zombie h4 {
+    color: var(--zombie-green);
+}
+
+/* Tips Cards */
+.tip-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.tip-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--zombie-green);
+}
+
+.tip-number {
+    font-family: 'Creepster', cursive;
+    font-size: 3rem;
+    color: rgba(74, 222, 128, 0.2);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+/* Mobile menu button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--zombie-green);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        display: none;
+    }
+    
+    nav ul.active {
+        display: flex;
+    }
+}

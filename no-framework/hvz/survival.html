@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Guide - HvZ New Paltz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="zombie-walk" style="animation-delay: 5s;">🧟</div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="survival.html" class="active">Survival Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="padding-bottom: 2rem;">
+            <h1>🧠 Survival Guide</h1>
+            <p class="subtitle">Learn. Adapt. <span>Survive.</span></p>
+        </section>
+
+        <!-- Tips section -->
+        <section style="margin-bottom: 3rem;">
+            <div class="section-header">
+                <h2>💡 Pro Tips for Humans</h2>
+                <p>Wisdom from veteran survivors</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card tip-card">
+                    <span class="tip-number">01</span>
+                    <h3>🗺️ Know Your Routes</h3>
+                    <p>Scout multiple paths to your classes. Always have a Plan B and C. The predictable path is the deadly path.</p>
+                </div>
+                <div class="card tip-card">
+                    <span class="tip-number">02</span>
+                    <h3>👥 Travel in Groups</h3>
+                    <p>There's safety in numbers. A zombie might attack a lone human, but they'll think twice about a squad of 4+ survivors.</p>
+                </div>
+                <div class="card tip-card">
+                    <span class="tip-number">03</span>
+                    <h3>👀 Check Your Six</h3>
+                    <p>Always be aware of your surroundings. Zombies love attacking from behind. Regular 360° scans could save your life.</p>
+                </div>
+                <div class="card tip-card">
+                    <span class="tip-number">04</span>
+                    <h3>🔫 Reload Smart</h3>
+                    <p>Don't waste all your ammo on one zombie. Controlled shots are better than panic fire. Pick up your darts when safe!</p>
+                </div>
+                <div class="card tip-card">
+                    <span class="tip-number">05</span>
+                    <h3>⏰ Time Your Travels</h3>
+                    <p>Zombies tend to swarm between class periods. Leave 5 minutes early or late to avoid the rush.</p>
+                </div>
+                <div class="card tip-card">
+                    <span class="tip-number">06</span>
+                    <h3>🧦 Always Carry Socks</h3>
+                    <p>Sock balls are your best friend. They're quick to throw, easy to carry, and you can stuff them in any pocket.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zombie tips -->
+        <section style="margin-bottom: 3rem;">
+            <div class="section-header">
+                <h2 style="color: var(--zombie-green);">🧟 Tips for Zombies</h2>
+                <p>Master the art of the hunt</p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card" style="border-color: var(--zombie-green);">
+                    <h3>🎯 Coordinate Attacks</h3>
+                    <p>Use the Discord to organize with other zombies. Pincer movements and ambushes are far more effective than solo hunting.</p>
+                </div>
+                <div class="card" style="border-color: var(--zombie-green);">
+                    <h3>🌙 Hunt at Dusk</h3>
+                    <p>Low light conditions give zombies an advantage. Humans can't see you coming as easily in the evening.</p>
+                </div>
+                <div class="card" style="border-color: var(--zombie-green);">
+                    <h3>🎭 Act Natural</h3>
+                    <p>Don't obviously stalk your prey. Walk normally, check your phone, blend in. Strike when they least expect it.</p>
+                </div>
+                <div class="card" style="border-color: var(--zombie-green);">
+                    <h3>🚪 Control Exits</h3>
+                    <p>Humans must leave buildings eventually. Position yourself near building exits during class changes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Quiz -->
+        <section id="quiz" style="margin-bottom: 3rem;">
+            <div class="section-header">
+                <h2>🎮 Survival Quiz</h2>
+                <p>Test your knowledge - Are you ready for the outbreak?</p>
+            </div>
+
+            <div class="quiz-container" id="quiz-container">
+                <!-- Quiz generated by JS -->
+            </div>
+
+            <div id="quiz-result" class="quiz-result" style="display: none;">
+                <!-- Result displayed here -->
+            </div>
+        </section>
+
+        <!-- Campus survival map -->
+        <section style="margin-bottom: 3rem;">
+            <div class="section-header">
+                <h2>🗺️ Danger Zones</h2>
+                <p>Navigate the campus wisely</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card" style="border-color: var(--blood-red);">
+                    <h3 style="color: var(--blood-red);">☠️ High Danger</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>🔴 The Quad at noon</li>
+                        <li>🔴 Parking lots</li>
+                        <li>🔴 Wooster Hall courtyard</li>
+                        <li>🔴 Path to the Library</li>
+                        <li>🔴 Student Union exits</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-color: var(--warning-orange);">
+                    <h3 style="color: var(--warning-orange);">⚠️ Medium Danger</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>🟠 Science Building bridge</li>
+                        <li>🟠 Humanites steps</li>
+                        <li>🟠 Back paths</li>
+                        <li>🟠 Athletic fields edges</li>
+                        <li>🟠 Between dorms</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-color: var(--zombie-green);">
+                    <h3 style="color: var(--zombie-green);">✓ Safer Routes</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>🟢 Building-to-building paths</li>
+                        <li>🟢 Less popular walkways</li>
+                        <li>🟢 Early morning routes</li>
+                        <li>🟢 Well-lit areas at night</li>
+                        <li>🟢 High visibility areas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bite-size survival game -->
+        <section>
+            <div class="section-header">
+                <h2>🎯 Quick Reflexes Test</h2>
+                <p>Click the zombies before they get you!</p>
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <div id="reflex-game" style="position: relative; height: 300px; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; cursor: crosshair;">
+                    <div id="game-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Creepster', cursive; font-size: 2rem; color: var(--zombie-green);">
+                        Click to Start
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 2rem;">
+                    <div>
+                        <span style="color: var(--text-muted);">Score:</span>
+                        <span id="game-score" style="font-family: 'Creepster', cursive; font-size: 1.5rem; color: var(--zombie-green);">0</span>
+                    </div>
+                    <div>
+                        <span style="color: var(--text-muted);">Time:</span>
+                        <span id="game-time" style="font-family: 'Creepster', cursive; font-size: 1.5rem; color: var(--blood-red);">30</span>
+                    </div>
+                    <div>
+                        <span style="color: var(--text-muted);">High Score:</span>
+                        <span id="high-score" style="font-family: 'Creepster', cursive; font-size: 1.5rem; color: var(--warning-orange);">0</span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="startReflexGame()">Restart Game</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+        </p>
+    </footer>
+
+    <script>
+        // Quiz questions
+        const quizQuestions = [
+            {
+                question: "Where should you wear your bandana as a human?",
+                options: ["On your head", "On your arm", "Around your neck", "In your pocket"],
+                correct: 1
+            },
+            {
+                question: "How long is a zombie stunned after being hit?",
+                options: ["5 minutes", "10 minutes", "15 minutes", "30 minutes"],
+                correct: 2
+            },
+            {
+                question: "What happens if a zombie doesn't feed for 48 hours?",
+                options: ["They get stronger", "They starve out", "Nothing", "They become human"],
+                correct: 1
+            },
+            {
+                question: "How long does the Original Zombie stay secret?",
+                options: ["24 hours", "48 hours or 3 tags", "Until caught", "The whole game"],
+                correct: 1
+            },
+            {
+                question: "Which of these is NOT a safe zone?",
+                options: ["Classroom during class", "Library during finals", "The Quad", "Inside buildings"],
+                correct: 2
+            },
+            {
+                question: "What's the best time to travel across campus?",
+                options: ["At noon", "Between classes", "5 minutes early/late", "At midnight"],
+                correct: 2
+            },
+            {
+                question: "Which weapon is NOT allowed?",
+                options: ["Nerf blasters", "Sock balls", "Water guns", "All foam darts"],
+                correct: 2
+            },
+            {
+                question: "After being tagged, how long before you can hunt?",
+                options: ["Immediately", "15 minutes", "1 hour", "Next day"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            if (currentQuestion >= quizQuestions.length) {
+                showQuizResult();
+                return;
+            }
+
+            const q = quizQuestions[currentQuestion];
+            
+            container.innerHTML = `
+                <div class="quiz-question">
+                    <div style="color: var(--text-muted); margin-bottom: 0.5rem;">
+                        Question ${currentQuestion + 1} of ${quizQuestions.length}
+                    </div>
+                    <h3>${q.question}</h3>
+                    <div class="quiz-options">
+                        ${q.options.map((opt, i) => `
+                            <div class="quiz-option" onclick="selectAnswer(${i})" id="option-${i}">
+                                ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 1.5rem; display: none;" id="next-btn" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+                    </button>
+                </div>
+            `;
+            answered = false;
+        }
+
+        function selectAnswer(index) {
+            if (answered) return;
+            answered = true;
+
+            const q = quizQuestions[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === q.correct) {
+                    opt.classList.add('correct');
+                } else if (i === index && i !== q.correct) {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (index === q.correct) {
+                score++;
+            }
+
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            renderQuiz();
+        }
+
+        function showQuizResult() {
+            const container = document.getElementById('quiz-container');
+            container.style.display = 'none';
+            
+            const result = document.getElementById('quiz-result');
+            result.style.display = 'block';
+
+            const percentage = (score / quizQuestions.length) * 100;
+            let message, emoji, resultClass;
+
+            if (percentage >= 80) {
+                message = "You're a TRUE SURVIVOR!";
+                emoji = "🏆👤🔫";
+                resultClass = "survivor";
+            } else if (percentage >= 50) {
+                message = "You might survive... maybe.";
+                emoji = "🤔👤⚠️";
+                resultClass = "survivor";
+            } else {
+                message = "You're definitely zombie food!";
+                emoji = "🧟‍♂️🧟‍♀️🧟";
+                resultClass = "zombie";
+            }
+
+            result.className = `quiz-result ${resultClass}`;
+            result.innerHTML = `
+                <div style="font-size: 4rem; margin-bottom: 1rem;">${emoji}</div>
+                <h2>${message}</h2>
+                <p style="font-size: 1.5rem; margin: 1rem 0;">
+                    You scored <span style="color: var(--zombie-green);">${score}</span> out of ${quizQuestions.length}
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    ${percentage >= 80 ? "You know your stuff! See you at the game!" : "Maybe review the rules again before the outbreak..."}
+                </p>
+                <button class="btn btn-primary" onclick="restartQuiz()">Try Again</button>
+            `;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('quiz-result').style.display = 'none';
+            renderQuiz();
+        }
+
+        // Reflex game
+        let gameActive = false;
+        let gameScore = 0;
+        let gameTime = 30;
+        let gameInterval;
+        let zombieInterval;
+        let highScore = localStorage.getItem('hvzHighScore') || 0;
+
+        document.getElementById('high-score').textContent = highScore;
+
+        function startReflexGame() {
+            const game = document.getElementById('reflex-game');
+            const message = document.getElementById('game-message');
+            
+            gameActive = true;
+            gameScore = 0;
+            gameTime = 30;
+            
+            document.getElementById('game-score').textContent = '0';
+            document.getElementById('game-time').textContent = '30';
+            message.style.display = 'none';
+
+            // Remove existing zombies
+            game.querySelectorAll('.game-zombie').forEach(z => z.remove());
+
+            // Start spawning zombies
+            zombieInterval = setInterval(spawnZombie, 800);
+            
+            // Start countdown
+            gameInterval = setInterval(() => {
+                gameTime--;
+                document.getElementById('game-time').textContent = gameTime;
+                
+                if (gameTime <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function spawnZombie() {
+            if (!gameActive) return;
+            
+            const game = document.getElementById('reflex-game');
+            const zombie = document.createElement('div');
+            zombie.className = 'game-zombie';
+            zombie.style.cssText = `
+                position: absolute;
+                font-size: 2.5rem;
+                cursor: pointer;
+                transition: transform 0.1s;
+                user-select: none;
+            `;
+            zombie.textContent = ['🧟', '🧟‍♂️', '🧟‍♀️'][Math.floor(Math.random() * 3)];
+            
+            // Random position
+            const maxX = game.offsetWidth - 50;
+            const maxY = game.offsetHeight - 50;
+            zombie.style.left = Math.random() * maxX + 'px';
+            zombie.style.top = Math.random() * maxY + 'px';
+            
+            zombie.onclick = (e) => {
+                if (!gameActive) return;
+                e.stopPropagation();
+                gameScore++;
+                document.getElementById('game-score').textContent = gameScore;
+                zombie.style.transform = 'scale(0)';
+                setTimeout(() => zombie.remove(), 100);
+            };
+            
+            game.appendChild(zombie);
+            
+            // Remove zombie after 2 seconds if not clicked
+            setTimeout(() => {
+                if (zombie.parentNode) {
+                    zombie.style.opacity = '0';
+                    setTimeout(() => zombie.remove(), 200);
+                }
+            }, 2000);
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(zombieInterval);
+            
+            const game = document.getElementById('reflex-game');
+            const message = document.getElementById('game-message');
+            
+            // Remove all zombies
+            game.querySelectorAll('.game-zombie').forEach(z => z.remove());
+            
+            // Update high score
+            if (gameScore > highScore) {
+                highScore = gameScore;
+                localStorage.setItem('hvzHighScore', highScore);
+                document.getElementById('high-score').textContent = highScore;
+                message.innerHTML = `🏆 NEW HIGH SCORE! 🏆<br>${gameScore} zombies stunned!`;
+            } else {
+                message.innerHTML = `Game Over!<br>${gameScore} zombies stunned`;
+            }
+            message.style.display = 'block';
+        }
+
+        // Click to start
+        document.getElementById('reflex-game').onclick = function() {
+            if (!gameActive) {
+                startReflexGame();
+            }
+        };
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        // Initialize quiz
+        renderQuiz();
+    </script>
+</body>
+</html>

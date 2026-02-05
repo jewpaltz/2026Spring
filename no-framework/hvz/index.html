@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humans vs Zombies - SUNY New Paltz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated zombie in background -->
+    <div class="zombie-walk">🧟</div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="survival.html">Survival Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1 class="float">Humans vs Zombies</h1>
+            <p class="subtitle">The apocalypse has arrived at <span>SUNY New Paltz</span></p>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                Will you survive the horde... or join it?
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="register.html" class="btn btn-primary shake">Join the Fight</a>
+                <a href="rules.html" class="btn btn-secondary">Learn the Rules</a>
+            </div>
+        </section>
+
+        <!-- Countdown to next game -->
+        <section class="card" style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-family: 'Creepster', cursive; color: var(--blood-red); font-size: 2rem; margin-bottom: 1rem;">
+                ⏰ Next Outbreak Begins In:
+            </h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); margin-top: 1rem;">
+                Spring 2026 Game - Starts March 15th at Noon
+            </p>
+        </section>
+
+        <!-- Live stats -->
+        <section style="margin-bottom: 3rem;">
+            <div class="section-header">
+                <h2>🎯 Current Game Status</h2>
+                <p>Real-time survival statistics</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number human" id="human-count">127</span>
+                    <span class="stat-label">Humans Surviving</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number zombie" id="zombie-count">43</span>
+                    <span class="stat-label">Zombies Hunting</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" style="color: var(--warning-orange);" id="days-remaining">4</span>
+                    <span class="stat-label">Days Remaining</span>
+                </div>
+            </div>
+
+            <!-- Visual progress bar -->
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: var(--human-blue);">👤 Humans</span>
+                    <span style="color: var(--zombie-green);">🧟 Zombies</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill">
+                        <div class="progress-humans" id="progress-humans" style="width: 75%;"></div>
+                        <div class="progress-zombies" id="progress-zombies" style="width: 25%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <div class="section-header">
+                <h2>🔥 Why Play HvZ?</h2>
+                <p>Experience the ultimate campus survival game</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>🏃 Epic Chases</h3>
+                    <p>Run for your life across campus! Dodge zombies between classes, in the quad, and everywhere in between. Every trip to class becomes an adventure.</p>
+                </div>
+                <div class="card">
+                    <h3>🤝 Make Friends</h3>
+                    <p>Team up with fellow survivors or hunt as a zombie horde. Form alliances, plan strategies, and create unforgettable memories with new friends.</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Missions</h3>
+                    <p>Complete special objectives, defend safe zones, and participate in epic showdowns. Each game features unique missions and storylines.</p>
+                </div>
+                <div class="card">
+                    <h3>🧦 Dart Blasters</h3>
+                    <p>Arm yourself with approved Nerf blasters and sock balls. Stun zombies to make your escape. Learn to aim while running!</p>
+                </div>
+                <div class="card">
+                    <h3>🏆 Legendary Status</h3>
+                    <p>Become a campus legend! Top survivors and most effective zombies earn their place on our leaderboard and gain bragging rights.</p>
+                </div>
+                <div class="card">
+                    <h3>🎭 The Transformation</h3>
+                    <p>Experience both sides! Getting tagged isn't the end - becoming a zombie opens up a whole new way to play the game.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent activity feed -->
+        <section style="margin-top: 3rem;">
+            <div class="section-header">
+                <h2>📢 Recent Activity</h2>
+                <p>Live feed from the battlefield</p>
+            </div>
+
+            <div class="card">
+                <div id="activity-feed">
+                    <!-- Activities will be populated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Not responsible for lost homework due to zombie chases.</p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            // Set the game date - March 15, 2026 at noon
+            const gameDate = new Date('March 15, 2026 12:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = gameDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('countdown').innerHTML = '<p style="color: var(--blood-red); font-family: Creepster; font-size: 2rem;">THE OUTBREAK HAS BEGUN!</p>';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Simulate live stats changes
+        function animateStats() {
+            const humans = document.getElementById('human-count');
+            const zombies = document.getElementById('zombie-count');
+            
+            setInterval(() => {
+                const currentHumans = parseInt(humans.textContent);
+                const currentZombies = parseInt(zombies.textContent);
+                
+                // Randomly decrease humans and increase zombies
+                if (Math.random() > 0.7 && currentHumans > 10) {
+                    const converted = Math.floor(Math.random() * 3) + 1;
+                    humans.textContent = currentHumans - converted;
+                    zombies.textContent = currentZombies + converted;
+                    
+                    // Update progress bar
+                    const total = (currentHumans - converted) + (currentZombies + converted);
+                    const humanPercent = ((currentHumans - converted) / total) * 100;
+                    document.getElementById('progress-humans').style.width = humanPercent + '%';
+                    document.getElementById('progress-zombies').style.width = (100 - humanPercent) + '%';
+                }
+            }, 5000);
+        }
+        animateStats();
+
+        // Activity feed
+        const activities = [
+            { time: '2 min ago', text: '🧟 ZombieMaster_42 tagged HumanRunner99 near the library!', type: 'zombie' },
+            { time: '5 min ago', text: '👤 SurvivorSam completed the "Supply Run" mission!', type: 'human' },
+            { time: '8 min ago', text: '🧟 The horde is gathering near the Student Union...', type: 'warning' },
+            { time: '12 min ago', text: '👤 Team Alpha defended the Science Building!', type: 'human' },
+            { time: '15 min ago', text: '🧟 3 humans were converted at the parking lot!', type: 'zombie' },
+            { time: '20 min ago', text: '📢 New mission available: "Rescue the Professor"', type: 'mission' },
+            { time: '25 min ago', text: '👤 NerfNinja stunned 5 zombies in one encounter!', type: 'human' },
+            { time: '30 min ago', text: '🧟 Original Zombie "Patient Zero" has awakened!', type: 'zombie' }
+        ];
+
+        function populateActivityFeed() {
+            const feed = document.getElementById('activity-feed');
+            let html = '';
+            
+            activities.forEach(activity => {
+                let color = 'var(--text-muted)';
+                if (activity.type === 'zombie') color = 'var(--zombie-green)';
+                if (activity.type === 'human') color = 'var(--human-blue)';
+                if (activity.type === 'warning') color = 'var(--warning-orange)';
+                if (activity.type === 'mission') color = 'var(--blood-red)';
+                
+                html += `
+                    <div style="padding: 1rem; border-bottom: 1px solid rgba(74, 222, 128, 0.1); display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: ${color};">${activity.text}</span>
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">${activity.time}</span>
+                    </div>
+                `;
+            });
+            
+            feed.innerHTML = html;
+        }
+        populateActivityFeed();
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - HvZ New Paltz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="zombie-walk" style="animation-delay: 2s;">🧟</div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+                <li><a href="survival.html">Survival Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" style="padding-bottom: 2rem;">
+            <h1>🏆 Leaderboard</h1>
+            <p class="subtitle">Glory to the <span>survivors</span> and the <span style="color: var(--zombie-green);">hunters</span></p>
+        </section>
+
+        <!-- Filter buttons -->
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary filter-btn active" onclick="filterLeaderboard('all')">All Players</button>
+            <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('human')">👤 Humans</button>
+            <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('zombie')">🧟 Zombies</button>
+            <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('legends')">🏆 Legends</button>
+        </div>
+
+        <!-- Search -->
+        <div style="max-width: 500px; margin: 0 auto 2rem;">
+            <div class="form-group">
+                <input type="text" id="search" placeholder="🔍 Search players..." oninput="searchPlayers(this.value)">
+            </div>
+        </div>
+
+        <!-- Stats summary -->
+        <div class="grid grid-3" style="margin-bottom: 2rem;">
+            <div class="card" style="text-align: center;">
+                <span style="font-size: 2rem;">🏃</span>
+                <h3 style="color: var(--human-blue);">Longest Survival</h3>
+                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--human-blue);">6 Days 14h</p>
+                <p style="color: var(--text-muted);">by ShadowRunner</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <span style="font-size: 2rem;">🎯</span>
+                <h3 style="color: var(--zombie-green);">Most Tags</h3>
+                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--zombie-green);">23 Tags</p>
+                <p style="color: var(--text-muted);">by ZombieMaster_42</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <span style="font-size: 2rem;">🔫</span>
+                <h3 style="color: var(--warning-orange);">Most Stuns</h3>
+                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--warning-orange);">47 Stuns</p>
+                <p style="color: var(--text-muted);">by NerfNinja</p>
+            </div>
+        </div>
+
+        <!-- Leaderboard table -->
+        <div class="card" style="padding: 0; overflow-x: auto;">
+            <table class="leaderboard-table" id="leaderboard">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">#</th>
+                        <th onclick="sortTable(1)">Player</th>
+                        <th onclick="sortTable(2)">Status</th>
+                        <th onclick="sortTable(3)">Tags/Stuns</th>
+                        <th onclick="sortTable(4)">Missions</th>
+                        <th onclick="sortTable(5)">Points</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Hall of Fame -->
+        <section style="margin-top: 3rem;">
+            <div class="section-header">
+                <h2>🏅 Hall of Fame</h2>
+                <p>Legendary players from past games</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card" style="text-align: center; border-color: gold;">
+                    <div style="font-size: 3rem;">🥇</div>
+                    <h3 style="color: gold;">Fall 2025 Champion</h3>
+                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">TheLastStanding</p>
+                    <p style="color: var(--text-muted);">Survived entire game as human</p>
+                </div>
+                <div class="card" style="text-align: center; border-color: silver;">
+                    <div style="font-size: 3rem;">🥈</div>
+                    <h3 style="color: silver;">Spring 2025 MVP</h3>
+                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">ZombieQueen</p>
+                    <p style="color: var(--text-muted);">31 tags in one game</p>
+                </div>
+                <div class="card" style="text-align: center; border-color: #cd7f32;">
+                    <div style="font-size: 3rem;">🥉</div>
+                    <h3 style="color: #cd7f32;">Mission Master</h3>
+                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">CaptainChaos</p>
+                    <p style="color: var(--text-muted);">Completed all missions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive zombie growth chart -->
+        <section style="margin-top: 3rem;">
+            <div class="section-header">
+                <h2>📈 Infection Spread</h2>
+                <p>Watch the horde grow over time</p>
+            </div>
+
+            <div class="card">
+                <div id="infection-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; border-bottom: 2px solid var(--zombie-green); padding-bottom: 1rem;">
+                    <!-- Chart bars populated by JS -->
+                </div>
+                <div id="chart-labels" style="display: flex; justify-content: space-around; margin-top: 0.5rem;">
+                    <!-- Labels populated by JS -->
+                </div>
+                <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem;">
+                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--human-blue); margin-right: 0.5rem;"></span> Humans</span>
+                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--zombie-green); margin-right: 0.5rem;"></span> Zombies</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+        </p>
+    </footer>
+
+    <script>
+        // Sample player data
+        const players = [
+            { rank: 1, name: 'ShadowRunner', status: 'human', tags: 0, stuns: 34, missions: 8, points: 2450 },
+            { rank: 2, name: 'ZombieMaster_42', status: 'zombie', tags: 23, stuns: 0, missions: 5, points: 2300 },
+            { rank: 3, name: 'NerfNinja', status: 'human', tags: 0, stuns: 47, missions: 6, points: 2150 },
+            { rank: 4, name: 'BrainsForDays', status: 'zombie', tags: 18, stuns: 0, missions: 4, points: 1800 },
+            { rank: 5, name: 'SurvivorSam', status: 'human', tags: 0, stuns: 28, missions: 7, points: 1750 },
+            { rank: 6, name: 'TheHorde', status: 'zombie', tags: 15, stuns: 0, missions: 3, points: 1500 },
+            { rank: 7, name: 'QuickDraw', status: 'human', tags: 0, stuns: 31, missions: 5, points: 1450 },
+            { rank: 8, name: 'PatientZero', status: 'zombie', tags: 12, stuns: 0, missions: 6, points: 1400, legend: true },
+            { rank: 9, name: 'FortressBuilder', status: 'human', tags: 0, stuns: 22, missions: 9, points: 1350 },
+            { rank: 10, name: 'NightStalker', status: 'zombie', tags: 11, stuns: 0, missions: 4, points: 1300 },
+            { rank: 11, name: 'DartMaster', status: 'human', tags: 0, stuns: 25, missions: 5, points: 1250 },
+            { rank: 12, name: 'WalkingDead', status: 'zombie', tags: 9, stuns: 0, missions: 3, points: 1100 },
+            { rank: 13, name: 'LastHope', status: 'human', tags: 0, stuns: 19, missions: 6, points: 1050 },
+            { rank: 14, name: 'Braaaains', status: 'zombie', tags: 8, stuns: 0, missions: 2, points: 950 },
+            { rank: 15, name: 'SockWarrior', status: 'human', tags: 0, stuns: 38, missions: 4, points: 900 }
+        ];
+
+        let currentFilter = 'all';
+        let sortColumn = 5; // Default sort by points
+        let sortAsc = false;
+
+        function renderLeaderboard(data) {
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+
+            data.forEach((player, index) => {
+                const row = document.createElement('tr');
+                
+                // Add rank class for top 3
+                if (index === 0) row.className = 'rank-1';
+                if (index === 1) row.className = 'rank-2';
+                if (index === 2) row.className = 'rank-3';
+
+                const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1;
+                const statusBadge = player.status === 'human' 
+                    ? '<span class="badge badge-human">👤 Human</span>' 
+                    : '<span class="badge badge-zombie">🧟 Zombie</span>';
+                const stat = player.status === 'human' ? `${player.stuns} stuns` : `${player.tags} tags`;
+                const legendBadge = player.legend ? ' ⭐' : '';
+
+                row.innerHTML = `
+                    <td style="font-size: 1.3rem;">${medal}</td>
+                    <td><strong>${player.name}</strong>${legendBadge}</td>
+                    <td>${statusBadge}</td>
+                    <td>${stat}</td>
+                    <td>${player.missions} ✓</td>
+                    <td style="color: var(--zombie-green); font-weight: bold;">${player.points.toLocaleString()}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function filterLeaderboard(filter) {
+            currentFilter = filter;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let filtered = [...players];
+            
+            if (filter === 'human') {
+                filtered = players.filter(p => p.status === 'human');
+            } else if (filter === 'zombie') {
+                filtered = players.filter(p => p.status === 'zombie');
+            } else if (filter === 'legends') {
+                filtered = players.filter(p => p.legend || p.rank <= 3);
+            }
+
+            renderLeaderboard(filtered);
+        }
+
+        function searchPlayers(query) {
+            const filtered = players.filter(p => 
+                p.name.toLowerCase().includes(query.toLowerCase())
+            );
+            renderLeaderboard(filtered);
+        }
+
+        function sortTable(column) {
+            sortColumn = column;
+            sortAsc = !sortAsc;
+            
+            const sorted = [...players].sort((a, b) => {
+                let valA, valB;
+                switch(column) {
+                    case 0: valA = a.rank; valB = b.rank; break;
+                    case 1: valA = a.name; valB = b.name; break;
+                    case 2: valA = a.status; valB = b.status; break;
+                    case 3: valA = a.status === 'human' ? a.stuns : a.tags; valB = b.status === 'human' ? b.stuns : b.tags; break;
+                    case 4: valA = a.missions; valB = b.missions; break;
+                    case 5: valA = a.points; valB = b.points; break;
+                }
+                
+                if (typeof valA === 'string') {
+                    return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+                return sortAsc ? valA - valB : valB - valA;
+            });
+            
+            renderLeaderboard(sorted);
+        }
+
+        // Infection chart
+        function renderInfectionChart() {
+            const chartData = [
+                { day: 'Day 1', humans: 200, zombies: 1 },
+                { day: 'Day 2', humans: 185, zombies: 16 },
+                { day: 'Day 3', humans: 160, zombies: 41 },
+                { day: 'Day 4', humans: 127, zombies: 74 },
+                { day: 'Day 5', humans: 95, zombies: 106 },
+                { day: 'Day 6', humans: 68, zombies: 133 },
+                { day: 'Day 7', humans: 42, zombies: 159 }
+            ];
+
+            const chart = document.getElementById('infection-chart');
+            const labels = document.getElementById('chart-labels');
+            const maxTotal = 200;
+
+            chart.innerHTML = '';
+            labels.innerHTML = '';
+
+            chartData.forEach(data => {
+                const bar = document.createElement('div');
+                bar.style.display = 'flex';
+                bar.style.flexDirection = 'column';
+                bar.style.alignItems = 'center';
+                bar.style.width = '12%';
+
+                const humanHeight = (data.humans / maxTotal) * 100;
+                const zombieHeight = (data.zombies / maxTotal) * 100;
+
+                bar.innerHTML = `
+                    <div style="display: flex; flex-direction: column-reverse; height: 180px; width: 100%;">
+                        <div style="background: var(--human-blue); height: ${humanHeight}%; width: 100%; transition: height 0.5s;"></div>
+                        <div style="background: var(--zombie-green); height: ${zombieHeight}%; width: 100%; transition: height 0.5s;"></div>
+                    </div>
+                `;
+                chart.appendChild(bar);
+
+                const label = document.createElement('span');
+                label.style.color = 'var(--text-muted)';
+                label.style.fontSize = '0.8rem';
+                label.textContent = data.day;
+                labels.appendChild(label);
+            });
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        // Initialize
+        renderLeaderboard(players);
+        renderInfectionChart();
+
+        // Animate chart on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    renderInfectionChart();
+                }
+            });
+        });
+        observer.observe(document.getElementById('infection-chart'));
+    </script>
+</body>
+</html>
