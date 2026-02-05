@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="zombie-walk" style="animation-delay: 3s;">🧟</div>
+    <div class="zombie-walk" style="animation-delay: 3s;">??</div>
     
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">HvZ <span>New Paltz</span></a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <button class="menu-toggle" onclick="toggleMenu()">?</button>
             <ul id="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="rules.html" class="active">Rules</a></li>
@@ -25,30 +25,30 @@
 
     <main>
         <section class="hero" style="padding-bottom: 2rem;">
-            <h1>📜 The Rules</h1>
-            <p class="subtitle">Know them. Follow them. <span>Survive them.</span></p>
+            <h1>?? Mission Protocols</h1>
+            <p class="subtitle">Directive: <span style="color: var(--neon-blue);">ADAPT</span> or <span style="color: var(--neon-purple);">PERSISH</span>.</p>
         </section>
 
         <!-- Quick overview cards -->
         <div class="grid grid-2" style="margin-bottom: 3rem;">
-            <div class="card" style="border-color: var(--human-blue);">
-                <h3 style="color: var(--human-blue);">👤 If You're Human</h3>
+            <div class="card" style="border-color: var(--neon-blue);">
+                <h3 style="color: var(--neon-blue);">?? Operative (Human)</h3>
                 <ul style="list-style: none; line-height: 2;">
-                    <li>✓ Wear your bandana on your arm</li>
-                    <li>✓ Carry your ID card at all times</li>
-                    <li>✓ Use blasters/socks to stun zombies</li>
-                    <li>✓ Complete missions to earn bonuses</li>
-                    <li>✓ Avoid being tagged by zombies</li>
+                    <li>? Equip bandana on arm</li>
+                    <li>? Carry ID Card at all times</li>
+                    <li>? Stun hostiles via Blaster/Sock</li>
+                    <li>? Bonus points for Mission Completion</li>
+                    <li>? Evasion is primary directive</li>
                 </ul>
             </div>
-            <div class="card" style="border-color: var(--zombie-green);">
-                <h3>🧟 If You're Zombie</h3>
+            <div class="card" style="border-color: var(--neon-purple);">
+                <h3 style="color: var(--neon-purple);">?? Infector (Zombie)</h3>
                 <ul style="list-style: none; line-height: 2;">
-                    <li>✓ Wear your bandana on your head</li>
-                    <li>✓ Tag humans to convert them</li>
-                    <li>✓ Report tags within 1 hour</li>
-                    <li>✓ Stunned = 15 min timeout</li>
-                    <li>✓ Feed every 48 hours or starve out</li>
+                    <li>? Equip bandana on head</li>
+                    <li>? Tag humans to assimilate</li>
+                    <li>? Log tags within 1 hour</li>
+                    <li>? Stun cooldown: 15 minutes</li>
+                    <li>? Feed every 48h to avoid system removal</li>
                 </ul>
             </div>
         </div>
@@ -56,163 +56,159 @@
         <!-- Detailed rules accordion -->
         <section>
             <div class="section-header">
-                <h2>📖 Complete Rulebook</h2>
-                <p>Click each section to expand</p>
+                <h2>?? Full Codex</h2>
+                <p style="color: var(--text-muted);">Expand to view sub-protocols</p>
             </div>
 
             <div class="accordion">
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🎮 Basic Gameplay</h4>
+                        <h4>?? Simulation Overview</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            Humans vs Zombies is a game of tag played across campus. All players start as humans 
-                            except for one "Original Zombie" (OZ). Zombies try to tag humans to convert them. 
-                            Humans defend themselves with Nerf blasters and sock balls. The game runs 24/7 for 
-                            one week. Safe zones include: inside buildings, dining halls during meals, classrooms 
-                            during class, and residence hall rooms. The outdoor areas of campus are always active!
+                            Humans vs Zombies is a campus-wide evasion simulation. All units deploy as Humans 
+                            except for one designated "Original Zombie" (OZ). Infectors attempt to assimilate humans. 
+                            Humans defend with approved foam blasters and socks. Simulation runs 24/7 for 
+                            one week. Safe Zones: Academic interiors, mess halls during rations, active classrooms, 
+                            and residence quarters. Outdoor sectors are always active combat zones.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🎯 Tagging Rules</h4>
+                        <h4>?? Assimilation (Tagging)</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            <strong>For Zombies:</strong> A tag is a firm touch on any part of the human's body 
-                            or clothes. Once tagged, the human must give you their ID code. Report the tag on 
-                            the website within 1 hour. You cannot tag while stunned.<br><br>
-                            <strong>For Humans:</strong> When tagged, you become a zombie immediately. Move your 
-                            bandana to your head. Wait 15 minutes before you can start hunting. This is your 
-                            "transformation period."
+                            <strong>For Infectors:</strong> A tag is a firm touch on any part of the human's body 
+                            or clothes. Upon contact, demand ID code. Report tag via terminal within 1 hour. 
+                            Aggression disabled while stunned.<br><br>
+                            <strong>For Humans:</strong> Upon contact, you are converted. Transfer bandana 
+                            to head position. Wait 15 minutes (Transformation Phase) before active hunting.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🔫 Approved Equipment</h4>
+                        <h4>?? Approved Weaponry</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            <strong>Approved Blasters:</strong> Any Nerf-brand or equivalent foam dart blaster. 
-                            No modifications that increase power. Must pass moderator inspection.<br><br>
-                            <strong>Sock Balls:</strong> Rolled-up socks. Must be soft and throwable. No weights 
-                            or hard objects inside.<br><br>
-                            <strong>NOT Allowed:</strong> Airsoft, paintball, water guns, melee weapons, shields, 
-                            or any modified equipment. When in doubt, ask a moderator!
+                            <strong>Blasters:</strong> Nerf-brand or equivalent foam dart launchers. 
+                            Modifications increasing velocity strictly prohibited. Must pass armory inspection.<br><br>
+                            <strong>Ordnance (Socks):</strong> Rolled socks secured with tape/band. Soft throwables only. 
+                            No weighted cores.<br><br>
+                            <strong>PROHIBITED:</strong> Airsoft, paintball, hydro-cannons, melee, riot shields, 
+                            unauthorized mods.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>⚡ Stunning Zombies</h4>
+                        <h4>? Stun Protocol</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            Hit a zombie with a dart or sock to stun them. Stunned zombies must sit down or 
-                            kneel and count to 15 minutes (or set a timer). They cannot move, tag, or 
-                            interfere with gameplay while stunned. Zombies must be honest about being stunned! 
-                            Disputes should be reported to moderators. Multiple hits don't extend stun time.
+                            Hit an infector with dart/sock to induce Stun State. Stunned units must kneel/sit 
+                            and initiate 15-minute reboot timer. Movement/Tagging disabled. 
+                            Honesty is mandatory. Disputes logged with Game Control. 
+                            Sequential hits do no stack duration.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🏠 Safe Zones</h4>
+                        <h4>?? Safe Sectors</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            <strong>Always Safe:</strong><br>
-                            • Inside any academic building<br>
-                            • Residence hall rooms (not hallways)<br>
-                            • Dining halls during meal hours<br>
-                            • Library during finals week<br>
-                            • Any classroom during scheduled class<br>
-                            • Campus shuttles and buses<br><br>
-                            <strong>Never Safe:</strong><br>
-                            • Parking lots<br>
-                            • The quad and all outdoor areas<br>
-                            • Building lobbies and hallways<br>
-                            • Athletic fields (except during official games)
+                            <strong>Safe:</strong><br>
+                            � Academic Buildings (Interior)<br>
+                            � Residence Rooms (Not Corridors)<br>
+                            � Dining Facilities (Active Hours)<br>
+                            � Library (Finals Protocol)<br>
+                            � Active Classrooms<br>
+                            � Transport Shuttles<br><br>
+                            <strong>Hazardous (Open Play):</strong><br>
+                            � Parking Sectors<br>
+                            � The Quad / Walking Paths<br>
+                            � Lobbies / Corridors<br>
+                            � Athletic Fields (Unless active sport)
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🎭 The Original Zombie (OZ)</h4>
+                        <h4>?? Patient Zero (OZ)</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            The OZ starts the outbreak. Their identity is SECRET for the first 48 hours. 
-                            They wear their bandana on their arm like a human but are actually a zombie. 
-                            After 48 hours or once they make 3 tags (whichever comes first), they must 
-                            reveal themselves and wear the bandana on their head. The OZ is immune to 
-                            starvation for the first 3 days.
+                            OZ begins infection. ID: CLASSIFIED for initial 48h. 
+                            Wears bandana on arm (Stealth Mode). 
+                            After 48h or 3 confirmed tags, masking fails - must wear on head. 
+                            OZ immune to starvation for 72h.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>💀 Zombie Starvation</h4>
+                        <h4>?? Starvation Sequence</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            Zombies must feed (successfully tag a human) at least once every 48 hours or 
-                            they "starve" and are eliminated from the game. Starved zombies can return as 
-                            "spectator zombies" who can participate in missions but cannot tag humans. 
-                            This mechanic prevents zombies from hiding and waiting until the end of the game.
+                            Infectors must feed (tag) once every 48h or face elimination. 
+                            Starved units reboot as "Spectators" (Mission participation allowed, 
+                            Hunting disabled). Prevents camping/hiding strategies.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>🎯 Missions</h4>
+                        <h4>?? Mission Types</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            Special missions run throughout the game. These are announced via the website 
-                            and Discord. Mission types include:<br><br>
-                            • <strong>Escort:</strong> Protect a VIP from point A to B<br>
-                            • <strong>Capture:</strong> Hold a location for a set time<br>
-                            • <strong>Retrieval:</strong> Find and return objects to base<br>
-                            • <strong>Siege:</strong> All-out battle at a specific location<br><br>
-                            Completing missions earns points and can unlock special abilities!
+                            Objectives broadcasted via Discord/Site.<br><br>
+                            � <strong>Escort:</strong> Transport Asset A to B safely.<br>
+                            � <strong>Hold:</strong> Maintain sector control.<br>
+                            � <strong>Fetch:</strong> Retrieve Data/Items.<br>
+                            � <strong>Siege:</strong> Large scale conflict.<br><br>
+                            Success = Points + Perks.
                         </p>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <h4>⚠️ Code of Conduct</h4>
+                        <h4>?? Conduct Code</h4>
                         <span class="icon">+</span>
                     </div>
                     <div class="accordion-content">
                         <p>
-                            • No playing in prohibited areas (labs, offices, etc.)<br>
-                            • No physical force beyond a light tag<br>
-                            • No entering someone's personal vehicle or residence<br>
-                            • No interfering with non-players<br>
-                            • No lying about tags or stuns (honor system!)<br>
-                            • Respect moderator decisions<br>
-                            • Most importantly: HAVE FUN and be a good sport!<br><br>
-                            <strong style="color: var(--blood-red);">Violations may result in removal from the game.</strong>
+                            � No unauthorized access (Restricted Areas).<br>
+                            � Physical contact limited to firm tag.<br>
+                            � Personal vehicles/rooms are off-limits.<br>
+                            � Non-player interference prohibited.<br>
+                            � Integrity check: Do not lie about status.<br>
+                            � Follow Admin directives.<br>
+                            � Primary Goal: ENJOY SIMULATION.<br><br>
+                            <strong style="color: var(--neon-red);">Violations result in immediate banishment.</strong>
                         </p>
                     </div>
                 </div>
@@ -222,26 +218,26 @@
         <!-- Quick FAQ -->
         <section style="margin-top: 3rem;">
             <div class="section-header">
-                <h2>❓ Quick FAQ</h2>
-                <p>Common questions answered</p>
+                <h2>? FAQ Database</h2>
+                <p style="color: var(--text-muted);">Common queries resolved</p>
             </div>
 
             <div class="grid grid-2">
                 <div class="card">
-                    <h3 style="font-size: 1.2rem;">Can I play if I have class?</h3>
-                    <p>Absolutely! Classrooms are safe zones during class. Just plan your routes carefully between buildings!</p>
+                    <h3 style="font-size: 1.2rem;">Conflict w/ Academic Class?</h3>
+                    <p>Classrooms are Safe Zones. Learning is prioritized. Plan transit routes accordingly.</p>
                 </div>
                 <div class="card">
-                    <h3 style="font-size: 1.2rem;">What if I can't afford a blaster?</h3>
-                    <p>Sock balls are free! We also have a loaner program. No one is excluded for financial reasons.</p>
+                    <h3 style="font-size: 1.2rem;">Weaponry Cost?</h3>
+                    <p>Socks are free ordnance. Loaner blasters available at HQ. Financial barriers removed.</p>
                 </div>
                 <div class="card">
-                    <h3 style="font-size: 1.2rem;">Can zombies run?</h3>
-                    <p>Yes! Zombies can run, walk, or shamble - your choice. But be careful not to trip!</p>
+                    <h3 style="font-size: 1.2rem;">Infector Mobility?</h3>
+                    <p>All speeds permitted (Walking/Sprinting). Caution advised on uneven terrain.</p>
                 </div>
                 <div class="card">
-                    <h3 style="font-size: 1.2rem;">What if there's a dispute?</h3>
-                    <p>Contact a moderator via Discord or the website. We'll resolve it fairly. When in doubt, play it out!</p>
+                    <h3 style="font-size: 1.2rem;">Conflict Resolution?</h3>
+                    <p>Contact Game Control via Discord. Disputes adjudicated fairly. Default: Play on.</p>
                 </div>
             </div>
         </section>
@@ -249,19 +245,19 @@
         <!-- rules quiz teaser -->
         <section style="margin-top: 3rem; text-align: center;">
             <div class="card">
-                <h3>🧠 Think You Know the Rules?</h3>
-                <p style="margin-bottom: 1.5rem;">Test your knowledge with our Survival Quiz!</p>
-                <a href="survival.html#quiz" class="btn btn-primary">Take the Quiz</a>
+                <h3>?? Protocol Knowledge Check</h3>
+                <p style="margin-bottom: 1.5rem;">Verify understanding of survival parameters.</p>
+                <a href="survival.html#quiz" class="btn btn-primary">Initiate Quiz</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p>SYSTEM: Humans vs Zombies // SUNY New Paltz Node</p>
         <p style="margin-top: 0.5rem;">
-            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
-            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
-            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+            <a href="mailto:hvz@newpaltz.edu">[CONTACT_ADMIN]</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">[INSTOGRAM_FEED]</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">[DISCORD_CHANNEL]</a>
         </p>
     </footer>
 

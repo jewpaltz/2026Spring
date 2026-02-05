@@ -27,20 +27,20 @@
     <main>
         <section class="hero">
             <h1 class="float">Humans vs Zombies</h1>
-            <p class="subtitle">The apocalypse has arrived at <span>SUNY New Paltz</span></p>
+            <p class="subtitle">System Status: <span>CRITICAL ALERT</span></p>
             <p style="color: var(--text-muted); margin-bottom: 2rem;">
-                Will you survive the horde... or join it?
+                Protocol Initiated at <span>SUNY New Paltz</span>. Choose your side.
             </p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="register.html" class="btn btn-primary shake">Join the Fight</a>
-                <a href="rules.html" class="btn btn-secondary">Learn the Rules</a>
+                <a href="register.html" class="btn btn-primary shake">Initialize Registration</a>
+                <a href="rules.html" class="btn btn-secondary">Access Protocols</a>
             </div>
         </section>
 
         <!-- Countdown to next game -->
         <section class="card" style="text-align: center; margin-bottom: 3rem;">
-            <h2 style="font-family: 'Creepster', cursive; color: var(--blood-red); font-size: 2rem; margin-bottom: 1rem;">
-                ⏰ Next Outbreak Begins In:
+            <h2 style="color: var(--neon-red); font-size: 2rem; margin-bottom: 1rem;">
+                ⚠️ OUTBREAK COUNTDOWN
             </h2>
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
@@ -61,37 +61,37 @@
                 </div>
             </div>
             <p style="color: var(--text-muted); margin-top: 1rem;">
-                Spring 2026 Game - Starts March 15th at Noon
+                T-Minus to Deployment: March 15th, 1200 Hours
             </p>
         </section>
 
         <!-- Live stats -->
         <section style="margin-bottom: 3rem;">
             <div class="section-header">
-                <h2>🎯 Current Game Status</h2>
-                <p>Real-time survival statistics</p>
+                <h2>📊 Live Telemetry</h2>
+                <p style="color: var(--text-muted);">Real-time population tracking</p>
             </div>
             
             <div class="stats">
                 <div class="stat-box">
                     <span class="stat-number human" id="human-count">127</span>
-                    <span class="stat-label">Humans Surviving</span>
+                    <span class="stat-label">Active Units</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-number zombie" id="zombie-count">43</span>
-                    <span class="stat-label">Zombies Hunting</span>
+                    <span class="stat-label">Infected</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number" style="color: var(--warning-orange);" id="days-remaining">4</span>
-                    <span class="stat-label">Days Remaining</span>
+                    <span class="stat-number" style="color: var(--neon-amber);" id="days-remaining">4</span>
+                    <span class="stat-label">Containment Days</span>
                 </div>
             </div>
 
             <!-- Visual progress bar -->
             <div style="max-width: 600px; margin: 0 auto;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                    <span style="color: var(--human-blue);">👤 Humans</span>
-                    <span style="color: var(--zombie-green);">🧟 Zombies</span>
+                    <span style="color: var(--neon-blue);">[HUMAN]</span>
+                    <span style="color: var(--neon-purple);">[ZOMBIE]</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill">
@@ -105,34 +105,34 @@
         <!-- Features -->
         <section>
             <div class="section-header">
-                <h2>🔥 Why Play HvZ?</h2>
-                <p>Experience the ultimate campus survival game</p>
+                <h2>⚡ Mission Objectives</h2>
+                <p style="color: var(--text-muted);">Why participate in the simulation?</p>
             </div>
 
             <div class="grid grid-3">
                 <div class="card">
-                    <h3>🏃 Epic Chases</h3>
-                    <p>Run for your life across campus! Dodge zombies between classes, in the quad, and everywhere in between. Every trip to class becomes an adventure.</p>
+                    <h3>🏃 Evasion Tactics</h3>
+                    <p>Execute evasion maneuvers across sector Campus. Navigate through safe zones and avoid hostile entities.</p>
                 </div>
                 <div class="card">
-                    <h3>🤝 Make Friends</h3>
-                    <p>Team up with fellow survivors or hunt as a zombie horde. Form alliances, plan strategies, and create unforgettable memories with new friends.</p>
+                    <h3>🤝 Squad Formation</h3>
+                    <p>Establish neural links with other operatives. Form alliances to increase survival probability.</p>
                 </div>
                 <div class="card">
-                    <h3>🎯 Missions</h3>
-                    <p>Complete special objectives, defend safe zones, and participate in epic showdowns. Each game features unique missions and storylines.</p>
+                    <h3>🎯 Directives</h3>
+                    <p>Complete assigned objectives to secure territory and protect high-value assets effectively.</p>
                 </div>
                 <div class="card">
-                    <h3>🧦 Dart Blasters</h3>
-                    <p>Arm yourself with approved Nerf blasters and sock balls. Stun zombies to make your escape. Learn to aim while running!</p>
+                    <h3>🔫 Weaponry</h3>
+                    <p>Utilize approved foam-projectile launchers and improvised heavy socks. Precision is key.</p>
                 </div>
                 <div class="card">
-                    <h3>🏆 Legendary Status</h3>
-                    <p>Become a campus legend! Top survivors and most effective zombies earn their place on our leaderboard and gain bragging rights.</p>
+                    <h3>🏆 Status Rank</h3>
+                    <p>Climb the hierarchy. Top operatives will be memorialized in the system database.</p>
                 </div>
                 <div class="card">
-                    <h3>🎭 The Transformation</h3>
-                    <p>Experience both sides! Getting tagged isn't the end - becoming a zombie opens up a whole new way to play the game.</p>
+                    <h3>🎭 Mutation</h3>
+                    <p>Infection is not termination. Join the hive mind and hunt your former squadmates.</p>
                 </div>
             </div>
         </section>
@@ -140,8 +140,8 @@
         <!-- Recent activity feed -->
         <section style="margin-top: 3rem;">
             <div class="section-header">
-                <h2>📢 Recent Activity</h2>
-                <p>Live feed from the battlefield</p>
+                <h2>📡 Intercepted Comms</h2>
+                <p style="color: var(--text-muted);">Live feed from sector sensors</p>
             </div>
 
             <div class="card">
@@ -153,13 +153,15 @@
     </main>
 
     <footer>
-        <p>🧟 Humans vs Zombies at SUNY New Paltz 🧟</p>
+        <p>SYSTEM: Humans vs Zombies // SUNY New Paltz Node</p>
         <p style="margin-top: 0.5rem;">
-            <a href="mailto:hvz@newpaltz.edu">Contact Us</a> | 
-            <a href="https://instagram.com/newpaltzhvz" target="_blank">Instagram</a> | 
-            <a href="https://discord.gg/newpaltzhvz" target="_blank">Discord</a>
+            <a href="mailto:hvz@newpaltz.edu">[CONTACT_ADMIN]</a> | 
+            <a href="https://instagram.com/newpaltzhvz" target="_blank">[INSTOGRAM_FEED]</a> | 
+            <a href="https://discord.gg/newpaltzhvz" target="_blank">[DISCORD_CHANNEL]</a>
         </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">Not responsible for lost homework due to zombie chases.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+            WARNING: Academic responsibilities remain priority alpha.
+        </p>
     </footer>
 
     <script>
@@ -181,7 +183,7 @@
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             } else {
-                document.getElementById('countdown').innerHTML = '<p style="color: var(--blood-red); font-family: Creepster; font-size: 2rem;">THE OUTBREAK HAS BEGUN!</p>';
+                document.getElementById('countdown').innerHTML = '<p style="color: var(--neon-red); font-family: Orbitron; font-size: 2rem;">⚠ ALERT: CONTAINMENT BREACH ⚠</p>';
             }
         }
 
@@ -215,14 +217,14 @@
 
         // Activity feed
         const activities = [
-            { time: '2 min ago', text: '🧟 ZombieMaster_42 tagged HumanRunner99 near the library!', type: 'zombie' },
-            { time: '5 min ago', text: '👤 SurvivorSam completed the "Supply Run" mission!', type: 'human' },
-            { time: '8 min ago', text: '🧟 The horde is gathering near the Student Union...', type: 'warning' },
-            { time: '12 min ago', text: '👤 Team Alpha defended the Science Building!', type: 'human' },
-            { time: '15 min ago', text: '🧟 3 humans were converted at the parking lot!', type: 'zombie' },
-            { time: '20 min ago', text: '📢 New mission available: "Rescue the Professor"', type: 'mission' },
-            { time: '25 min ago', text: '👤 NerfNinja stunned 5 zombies in one encounter!', type: 'human' },
-            { time: '30 min ago', text: '🧟 Original Zombie "Patient Zero" has awakened!', type: 'zombie' }
+            { time: '2 min ago', text: '🧟 ID_ZombieMaster has tagged ID_HumanRunner near Sector Library', type: 'zombie' },
+            { time: '5 min ago', text: '👤 Operative Sam completed "Supply Run" directive', type: 'human' },
+            { time: '8 min ago', text: '⚠️ BIOLOGICAL THREAT DETECTED: Student Union Sector', type: 'warning' },
+            { time: '12 min ago', text: '👤 Squad Alpha secured Science Building perimeter', type: 'human' },
+            { time: '15 min ago', text: '🧟 3 Operatives assimilated at Cargo Bay (Parking Lot)', type: 'zombie' },
+            { time: '20 min ago', text: '📢 Directive Update: "Rescue the Professor"', type: 'mission' },
+            { time: '25 min ago', text: '👤 ID_NerfNinja neutralized 5 hostiles', type: 'human' },
+            { time: '30 min ago', text: '🧟 PATIENT ZERO HAS AWAKENED', type: 'zombie' }
         ];
 
         function populateActivityFeed() {
@@ -231,13 +233,13 @@
             
             activities.forEach(activity => {
                 let color = 'var(--text-muted)';
-                if (activity.type === 'zombie') color = 'var(--zombie-green)';
-                if (activity.type === 'human') color = 'var(--human-blue)';
-                if (activity.type === 'warning') color = 'var(--warning-orange)';
-                if (activity.type === 'mission') color = 'var(--blood-red)';
+                if (activity.type === 'zombie') color = 'var(--neon-purple)';
+                if (activity.type === 'human') color = 'var(--neon-blue)';
+                if (activity.type === 'warning') color = 'var(--neon-amber)';
+                if (activity.type === 'mission') color = 'var(--neon-red)';
                 
                 html += `
-                    <div style="padding: 1rem; border-bottom: 1px solid rgba(74, 222, 128, 0.1); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="padding: 1rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
                         <span style="color: ${color};">${activity.text}</span>
                         <span style="color: var(--text-muted); font-size: 0.8rem;">${activity.time}</span>
                     </div>

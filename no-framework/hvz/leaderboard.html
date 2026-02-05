@@ -25,13 +25,13 @@
 
     <main>
         <section class="hero" style="padding-bottom: 2rem;">
-            <h1>🏆 Leaderboard</h1>
-            <p class="subtitle">Glory to the <span>survivors</span> and the <span style="color: var(--zombie-green);">hunters</span></p>
+            <h1>🏆 Global Ranking</h1>
+            <p class="subtitle">Status: <span style="color: var(--neon-blue);">ACTIVE</span> // Accessing Database...</p>
         </section>
 
         <!-- Filter buttons -->
         <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-            <button class="btn btn-secondary filter-btn active" onclick="filterLeaderboard('all')">All Players</button>
+            <button class="btn btn-secondary filter-btn active" onclick="filterLeaderboard('all')">All Units</button>
             <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('human')">👤 Humans</button>
             <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('zombie')">🧟 Zombies</button>
             <button class="btn btn-secondary filter-btn" onclick="filterLeaderboard('legends')">🏆 Legends</button>
@@ -40,29 +40,29 @@
         <!-- Search -->
         <div style="max-width: 500px; margin: 0 auto 2rem;">
             <div class="form-group">
-                <input type="text" id="search" placeholder="🔍 Search players..." oninput="searchPlayers(this.value)">
+                <input type="text" id="search" placeholder="🔍 ACCESS PLAYER RECORD..." oninput="searchPlayers(this.value)">
             </div>
         </div>
 
         <!-- Stats summary -->
         <div class="grid grid-3" style="margin-bottom: 2rem;">
             <div class="card" style="text-align: center;">
-                <span style="font-size: 2rem;">🏃</span>
-                <h3 style="color: var(--human-blue);">Longest Survival</h3>
-                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--human-blue);">6 Days 14h</p>
-                <p style="color: var(--text-muted);">by ShadowRunner</p>
+                <span style="font-size: 2rem;">⏱</span>
+                <h3 style="color: var(--neon-blue);">Max Survival Duration</h3>
+                <p style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-blue);">6D 14H</p>
+                <p style="color: var(--text-muted);">Unit: ShadowRunner</p>
             </div>
             <div class="card" style="text-align: center;">
                 <span style="font-size: 2rem;">🎯</span>
-                <h3 style="color: var(--zombie-green);">Most Tags</h3>
-                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--zombie-green);">23 Tags</p>
-                <p style="color: var(--text-muted);">by ZombieMaster_42</p>
+                <h3 style="color: var(--neon-purple);">Highest Infection Rate</h3>
+                <p style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-purple);">23 Conversions</p>
+                <p style="color: var(--text-muted);">Unit: ZombieMaster_42</p>
             </div>
             <div class="card" style="text-align: center;">
                 <span style="font-size: 2rem;">🔫</span>
-                <h3 style="color: var(--warning-orange);">Most Stuns</h3>
-                <p style="font-family: 'Creepster', cursive; font-size: 2rem; color: var(--warning-orange);">47 Stuns</p>
-                <p style="color: var(--text-muted);">by NerfNinja</p>
+                <h3 style="color: var(--neon-green);">Most Neutralizations</h3>
+                <p style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-green);">47 Stuns</p>
+                <p style="color: var(--text-muted);">Unit: NerfNinja</p>
             </div>
         </div>
 
@@ -72,11 +72,11 @@
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">#</th>
-                        <th onclick="sortTable(1)">Player</th>
+                        <th onclick="sortTable(1)">Unit ID</th>
                         <th onclick="sortTable(2)">Status</th>
                         <th onclick="sortTable(3)">Tags/Stuns</th>
-                        <th onclick="sortTable(4)">Missions</th>
-                        <th onclick="sortTable(5)">Points</th>
+                        <th onclick="sortTable(4)">Objectives</th>
+                        <th onclick="sortTable(5)">Score</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboard-body">
@@ -88,28 +88,28 @@
         <!-- Hall of Fame -->
         <section style="margin-top: 3rem;">
             <div class="section-header">
-                <h2>🏅 Hall of Fame</h2>
-                <p>Legendary players from past games</p>
+                <h2>🏅 Archives (Previous Ops)</h2>
+                <p style="color: var(--text-muted);">Top Ranked Operatives</p>
             </div>
 
             <div class="grid grid-3">
                 <div class="card" style="text-align: center; border-color: gold;">
                     <div style="font-size: 3rem;">🥇</div>
                     <h3 style="color: gold;">Fall 2025 Champion</h3>
-                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">TheLastStanding</p>
-                    <p style="color: var(--text-muted);">Survived entire game as human</p>
+                    <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem;">TheLastStanding</p>
+                    <p style="color: var(--text-muted);">Objective: Full Survival</p>
                 </div>
                 <div class="card" style="text-align: center; border-color: silver;">
                     <div style="font-size: 3rem;">🥈</div>
                     <h3 style="color: silver;">Spring 2025 MVP</h3>
-                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">ZombieQueen</p>
-                    <p style="color: var(--text-muted);">31 tags in one game</p>
+                    <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem;">ZombieQueen</p>
+                    <p style="color: var(--text-muted);">31 Confirmations</p>
                 </div>
                 <div class="card" style="text-align: center; border-color: #cd7f32;">
                     <div style="font-size: 3rem;">🥉</div>
-                    <h3 style="color: #cd7f32;">Mission Master</h3>
-                    <p style="font-family: 'Creepster', cursive; font-size: 1.5rem;">CaptainChaos</p>
-                    <p style="color: var(--text-muted);">Completed all missions</p>
+                    <h3 style="color: #cd7f32;">Ops Specialist</h3>
+                    <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem;">CaptainChaos</p>
+                    <p style="color: var(--text-muted);">100% Mission Completion</p>
                 </div>
             </div>
         </section>
@@ -117,20 +117,20 @@
         <!-- Interactive zombie growth chart -->
         <section style="margin-top: 3rem;">
             <div class="section-header">
-                <h2>📈 Infection Spread</h2>
-                <p>Watch the horde grow over time</p>
+                <h2>📈 Infection Vector Analysis</h2>
+                <p style="color: var(--text-muted);">Spread rate over time</p>
             </div>
 
             <div class="card">
-                <div id="infection-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; border-bottom: 2px solid var(--zombie-green); padding-bottom: 1rem;">
+                <div id="infection-chart" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; border-bottom: 2px solid var(--neon-purple); padding-bottom: 1rem;">
                     <!-- Chart bars populated by JS -->
                 </div>
                 <div id="chart-labels" style="display: flex; justify-content: space-around; margin-top: 0.5rem;">
                     <!-- Labels populated by JS -->
                 </div>
                 <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem;">
-                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--human-blue); margin-right: 0.5rem;"></span> Humans</span>
-                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--zombie-green); margin-right: 0.5rem;"></span> Zombies</span>
+                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--neon-blue); margin-right: 0.5rem;"></span> Human Units</span>
+                    <span><span style="display: inline-block; width: 20px; height: 20px; background: var(--neon-purple); margin-right: 0.5rem;"></span> Infected Units</span>
                 </div>
             </div>
         </section>
@@ -183,8 +183,8 @@
 
                 const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1;
                 const statusBadge = player.status === 'human' 
-                    ? '<span class="badge badge-human">👤 Human</span>' 
-                    : '<span class="badge badge-zombie">🧟 Zombie</span>';
+                    ? '<span class="badge badge-human">👤 ACTIVE</span>' 
+                    : '<span class="badge badge-zombie">🧟 INFECTED</span>';
                 const stat = player.status === 'human' ? `${player.stuns} stuns` : `${player.tags} tags`;
                 const legendBadge = player.legend ? ' ⭐' : '';
 
@@ -194,7 +194,7 @@
                     <td>${statusBadge}</td>
                     <td>${stat}</td>
                     <td>${player.missions} ✓</td>
-                    <td style="color: var(--zombie-green); font-weight: bold;">${player.points.toLocaleString()}</td>
+                    <td style="color: var(--neon-green); font-weight: bold;">${player.points.toLocaleString()}</td>
                 `;
                 tbody.appendChild(row);
             });
@@ -282,12 +282,12 @@
 
                 bar.innerHTML = `
                     <div style="display: flex; flex-direction: column-reverse; height: 180px; width: 100%;">
-                        <div style="background: var(--human-blue); height: ${humanHeight}%; width: 100%; transition: height 0.5s;"></div>
-                        <div style="background: var(--zombie-green); height: ${zombieHeight}%; width: 100%; transition: height 0.5s;"></div>
+                        <div style="background: var(--neon-blue); height: ${humanHeight}%; width: 100%; transition: height 0.5s;"></div>
+                        <div style="background: var(--neon-purple); height: ${zombieHeight}%; width: 100%; transition: height 0.5s;"></div>
                     </div>
                 `;
                 chart.appendChild(bar);
-
+                
                 const label = document.createElement('span');
                 label.style.color = 'var(--text-muted)';
                 label.style.fontSize = '0.8rem';
