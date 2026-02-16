@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopHub - Your Online Store</title>
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <strong style="font-size: 1.3rem;">🛍️ ShopHub</strong>
+            </div>
+            <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" @click="toggleMenu" :class="{ 'is-active': isMenuActive }">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <button class="button is-info">
+                            <span class="icon cart-badge">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                                <span class="badge">5</span>
+                            </span>
+                            <span>Cart</span>
+                        </button>
+                        <button class="button is-light">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero is-large hero-gradient">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-1">Welcome to ShopHub</h1>
+                <p class="subtitle is-4">Discover amazing products at unbeatable prices</p>
+                <button class="button is-light is-large">
+                    <span class="icon">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </span>
+                    <span>Start Shopping</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2">Shop by Category</h2>
+            <div class="columns is-multiline">
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <div class="box has-text-centered" style="cursor: pointer;">
+                        <p class="title is-5">👕 Fashion</p>
+                        <p class="subtitle is-6">1,234 Products</p>
+                    </div>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <div class="box has-text-centered" style="cursor: pointer;">
+                        <p class="title is-5">💻 Electronics</p>
+                        <p class="subtitle is-6">567 Products</p>
+                    </div>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <div class="box has-text-centered" style="cursor: pointer;">
+                        <p class="title is-5">📚 Books</p>
+                        <p class="subtitle is-6">2,891 Products</p>
+                    </div>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <div class="box has-text-centered" style="cursor: pointer;">
+                        <p class="title is-5">🏠 Home</p>
+                        <p class="subtitle is-6">3,456 Products</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="section has-background-light">
+        <div class="container">
+            <h2 class="title is-2">Featured Products</h2>
+            <div class="columns is-multiline">
+                <!-- Product Card 1 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">🎧 Premium Headphones</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Premium Headphones</p>
+                            <p class="subtitle is-6 has-text-grey-light">High-quality audio experience</p>
+                            <p class="tags">
+                                <span class="tag is-info">Electronics</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$99.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">⌚ Smart Watch</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Smart Watch Pro</p>
+                            <p class="subtitle is-6 has-text-grey-light">Track your fitness goals</p>
+                            <p class="tags">
+                                <span class="tag is-info">Electronics</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$199.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">📷 Camera</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Digital Camera</p>
+                            <p class="subtitle is-6 has-text-grey-light">Capture your memories in 4K</p>
+                            <p class="tags">
+                                <span class="tag is-info">Electronics</span>
+                                <span class="tag is-warning">Limited Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$499.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">👟 Running Shoes</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Running Shoes</p>
+                            <p class="subtitle is-6 has-text-grey-light">Comfort meets performance</p>
+                            <p class="tags">
+                                <span class="tag is-link">Fashion</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$79.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">👕 Vintage Tee</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Vintage T-Shirt</p>
+                            <p class="subtitle is-6 has-text-grey-light">Classic style, modern comfort</p>
+                            <p class="tags">
+                                <span class="tag is-link">Fashion</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$24.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">📖 Best Seller Book</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Bestselling Novel</p>
+                            <p class="subtitle is-6 has-text-grey-light">Award-winning author</p>
+                            <p class="tags">
+                                <span class="tag is-danger">Books</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$14.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 7 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">☕ Coffee Maker</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">Smart Coffee Maker</p>
+                            <p class="subtitle is-6 has-text-grey-light">Perfect morning brew</p>
+                            <p class="tags">
+                                <span class="tag is-warning">Home</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$89.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+
+                <!-- Product Card 8 -->
+                <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <div class="card product-card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <div class="product-image">🛋️ Desk Lamp</div>
+                            </figure>
+                        </div>
+                        <div class="product-content">
+                            <p class="title is-5">LED Desk Lamp</p>
+                            <p class="subtitle is-6 has-text-grey-light">Energy efficient lighting</p>
+                            <p class="tags">
+                                <span class="tag is-warning">Home</span>
+                                <span class="tag is-success">In Stock</span>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <div class="card-footer-item">
+                                <p class="price-tag">$34.99</p>
+                            </div>
+                            <div class="card-footer-item">
+                                <button class="button is-primary is-small">Add to Cart</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section hero-gradient">
+        <div class="container has-text-centered" style="color: white;">
+            <h2 class="title is-2" style="color: white;">Subscribe to Our Newsletter</h2>
+            <p class="subtitle is-5" style="color: white;">Get exclusive deals and latest updates delivered to your inbox</p>
+            <div class="field is-grouped is-grouped-centered">
+                <p class="control" style="max-width: 400px; width: 100%;">
+                    <input class="input" type="email" placeholder="Enter your email">
+                </p>
+                <p class="control">
+                    <button class="button is-light">Subscribe</button>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-background">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <h4 class="title is-5">About ShopHub</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <h4 class="title is-5">Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <h4 class="title is-5">Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+                <div class="column is-one-quarter-desktop is-half-tablet">
+                    <h4 class="title is-5">Follow Us</h4>
+                    <p>
+                        <a href="#" class="button is-small is-light">Facebook</a>
+                        <a href="#" class="button is-small is-light">Twitter</a>
+                        <a href="#" class="button is-small is-light">Instagram</a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="has-text-centered">
+                <p><strong>ShopHub</strong> © 2026. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.28/dist/vue.global.min.js"></script>
+    <script>
+        Vue.createApp({
+            setup(){
+                const isMenuActive = Vue.ref(false);
+                const toggleMenu = () => {
+                    isMenuActive.value = !isMenuActive.value;
+                };
+                return { isMenuActive, toggleMenu };
+            }
+        }).mount('body');
+    </script>
+</body>
+</html>
