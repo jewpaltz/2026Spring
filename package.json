@@ -1,0 +1,24 @@
+{
+    "name": "2026spring",
+    "version": "1.0.0",
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jewpaltz/2026Spring.git"
+    },
+    "license": "ISC",
+    "author": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "express": "^5.2.1",
+        "dotenv": "^17.3.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.5.7",
+        "@types/express": "^4.17.17",
+        "typescript": "^5.9.3",
+        "tsx": "^4.21.0"
+    }
+}
