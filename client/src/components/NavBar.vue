@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-
+const isActive = ref(false);
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import { RouterLink } from 'vue-router';
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                   @click="isActive = !isActive" :class="{ 'is-active': isActive }"
                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -22,7 +24,7 @@ import { RouterLink } from 'vue-router';
                 </a>
             </div>
 
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': isActive }">
                 <div class="navbar-start">
                     <RouterLink to="/" active-class="is-active" class="navbar-item">
                         Home
