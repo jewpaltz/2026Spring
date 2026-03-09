@@ -30,8 +30,8 @@ const isActive = ref(false);
                         Home
                     </RouterLink>
 
-                    <RouterLink to="/documentation" active-class="is-active" class="navbar-item">
-                        Documentation
+                    <RouterLink to="/products" active-class="is-active" class="navbar-item">
+                        Products
                     </RouterLink>
 
                     <div class="navbar-item has-dropdown is-hoverable">
@@ -42,9 +42,6 @@ const isActive = ref(false);
                         <div class="navbar-dropdown">
                             <RouterLink to="/about" active-class="is-active" class="navbar-item">
                                 About
-                            </RouterLink>
-                            <RouterLink to="/jobs" active-class="is-active" class="navbar-item">
-                                Jobs
                             </RouterLink>
                             <RouterLink to="/contact" active-class="is-active" class="navbar-item">
                                 Contact
