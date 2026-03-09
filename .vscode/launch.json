@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend: Debug Server",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "autoAttachChildProcesses": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Frontend: Vite Dev Server",
+      "type": "node-terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/client",
+      "command": "npm run dev"
+    },
+    {
+      "name": "Frontend: Debug in Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "Frontend: Start Vite",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client",
+      "sourceMaps": true
+    },
+    {
+      "name": "Frontend: Debug in Edge",
+      "type": "msedge",
+      "request": "launch",
+      "preLaunchTask": "Frontend: Start Vite",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client",
+      "sourceMaps": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack: Chrome + Backend",
+      "configurations": [
+        "Backend: Debug Server",
+        "Frontend: Debug in Chrome"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "Full Stack: Edge + Backend",
+      "configurations": [
+        "Backend: Debug Server",
+        "Frontend: Debug in Edge"
+      ],
+      "stopAll": true
+    }
+  ]
+}
