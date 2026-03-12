@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { useProductsStore } from '@/stores/products';
 import SideBar from '@/components/SideBar.vue';
+import ShoppingCart from '@/components/ShoppingCart.vue';
+import { useCartStore } from '@/stores/cart';
 
 
 const products = useProductsStore()
+const cart = useCartStore()
+
+function addToCart(productId: number) {
+    cart.addItem(productId)
+}
 
 </script>
 
@@ -16,7 +23,7 @@ const products = useProductsStore()
             <h4 class="title is-6">{{ product.title }}</h4>
             <h6 class="subtitle is-6">{{ product.category }} / {{ product.brand }}</h6>
             {{ product.description }}
-            <button class="button is-primary is-small add-button">
+            <button class="button is-primary is-small add-button" @click="addToCart(product.id)">
                 Add to Cart
             </button>
             <div>
@@ -25,8 +32,7 @@ const products = useProductsStore()
         </div>
     </div>
     <SideBar :width="300">
-        <h2 class="title is-4">Shopping Cart</h2>
-        <p>Your cart is empty.</p>
+        <ShoppingCart />
     </SideBar>
 </template>
 

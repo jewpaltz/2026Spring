@@ -15,9 +15,10 @@ const props = defineProps<{
 .side-bar {
     width: 250px;
     position: fixed;
-    top: 0;
+    top: 56px;
+    /* Adjust based on your header height */
     right: 0;
-    height: 100%;
+    height: calc(100% - 56px);
     border-left: 1px solid #ddd;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
     transform: translateX(90%);
