@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProductsStore } from '@/stores/products';
+import SideBar from '@/components/SideBar.vue';
 
 
 const products = useProductsStore()
@@ -23,6 +24,10 @@ const products = useProductsStore()
             </div>
         </div>
     </div>
+    <SideBar :width="300">
+        <h2 class="title is-4">Shopping Cart</h2>
+        <p>Your cart is empty.</p>
+    </SideBar>
 </template>
 
 <style scoped>
