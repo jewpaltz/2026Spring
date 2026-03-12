@@ -11,12 +11,16 @@ const products = useProductsStore()
     <div class="grid is-col-min-10">
         <div v-for="product in products.products" :key="product.id" class="box">
             <img :src="product.thumbnail" alt="Product Image" class="image is-4by3">
+
+            <h4 class="title is-6">{{ product.title }}</h4>
+            <h6 class="subtitle is-6">{{ product.category }} / {{ product.brand }}</h6>
+            {{ product.description }}
             <button class="button is-primary is-small add-button">
                 Add to Cart
             </button>
-            <b>{{ product.title }}</b>
-            {{ product.description }}
-            <div class="price">{{ product.price }}</div>
+            <div>
+                <span class="price">${{ product.price }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -26,5 +30,10 @@ const products = useProductsStore()
     float: right;
     margin-top: .5em;
     ;
+}
+
+.price {
+    font-weight: bold;
+    color: #3273dc;
 }
 </style>

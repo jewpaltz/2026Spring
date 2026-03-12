@@ -7,7 +7,7 @@ import type { Product } from '../types'
 import { ref } from 'vue'
 
 export const useProductsStore = defineStore('products', () => {
-  const products = ref(data.products)
+  const products = ref<Product[]>(data.products)
 
   return { products }
 })
