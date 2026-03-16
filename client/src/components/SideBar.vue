@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
 const props = defineProps<{
-    width?: number
+    width?: number,
+    isActive?: boolean
 }>()
 </script>
 
 <template>
-    <div class="side-bar" :class="{ 'is-active': false }" :style="{ width: props.width + 'px' }">
+    <div class="side-bar" :class="{ 'is-active': props.isActive }" :style="{ width: props.width + 'px' }">
         <slot />
     </div>
 </template>

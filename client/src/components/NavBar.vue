@@ -1,8 +1,16 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const isActive = ref(false);
+const cartStore = useCartStore();
+
+function toggleCart() {
+    console.log('Toggling cart sidebar');
+
+    cartStore.isCartSidebarOpen = !cartStore.isCartSidebarOpen;
+}
 </script>
 
 <template>
@@ -56,6 +64,17 @@ const isActive = ref(false);
 
                 <div class="navbar-end">
                     <div class="navbar-item">
+                        <a @click="toggleCart">
+                            <span class="tag is-danger is-small is-rounded count" v-if="cartStore.count">
+                                {{ cartStore.count }}
+                            </span>
+                            <span class="icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </span>
+                        </a>
+
+                    </div>
+                    <div class="navbar-item">
                         <div class="buttons">
                             <RouterLink to="/sign-up" active-class="is-active" class="button is-primary">
                                 <strong>Sign up</strong>
@@ -71,4 +90,12 @@ const isActive = ref(false);
     </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+.count {
+    position: absolute;
+    top: -3px;
+    right: -7px;
+    font-size: 0.75rem;
+    transition: all 0.3s ease-in-out;
+}
+</style>

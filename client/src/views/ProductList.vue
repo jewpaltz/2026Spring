@@ -31,12 +31,21 @@ function addToCart(productId: number) {
             </div>
         </div>
     </div>
-    <SideBar :width="300">
+    <SideBar :width="300" :is-active="cart.isCartSidebarOpen" class="sidebar">
         <ShoppingCart />
     </SideBar>
 </template>
 
 <style scoped>
+.sidebar {
+    background-color: #fff;
+}
+
+.subtitle {
+    margin-bottom: .5em;
+    font-style: italic;
+}
+
 .add-button {
     float: right;
     margin-top: .5em;
