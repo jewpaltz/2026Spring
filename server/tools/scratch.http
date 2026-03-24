@@ -1,6 +1,6 @@
 
 ###
-GET http://localhost:3000
+http://localhost:3000
 
 ###
 GET http://localhost:3000/suny
@@ -9,7 +9,21 @@ GET http://localhost:3000/suny
 GET http://localhost:3000/users
 
 ###
+GET http://localhost:3000/users/count
+
+###
 GET http://localhost:3000/users/1
 
 ###
+POST http://localhost:3000/
+
+###
 POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "email": "alice.smith@example.com"
+    
+}  

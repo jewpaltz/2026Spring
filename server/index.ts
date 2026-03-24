@@ -6,6 +6,8 @@ const SERVER = "localhost"
 
 const app = express()
 
+app.use(express.json()) // Middleware to parse JSON request bodies
+
 app.get("/", (_req, res) => {
     res.send("Hello World!")
 })
