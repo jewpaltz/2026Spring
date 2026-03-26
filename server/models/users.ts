@@ -4,8 +4,35 @@
 import type { User } from "../types"
 import data from "../data/users.json"
 
-export function getAll(): User[] {
-    return data.users as User[]
+export function getAll(
+    search?: string,
+    sortBy?: string,
+    descending?: boolean,
+    page?: number,
+    pageSize?: number,
+) {
+    let users = data.users as User[]
+    const total = users.length
+
+    if (search) {
+        const searchLower = search.toLowerCase()
+        users = users.filter(
+            (x) =>
+                x.firstName.toLowerCase().includes(searchLower) ||
+                x.lastName.toLowerCase().includes(searchLower) ||
+                x.email.toLowerCase().includes(searchLower),
+        )
+    }
+    if (sortBy) {
+        users = users.sortBy(sortBy, descending)
+    }
+    if (page !== undefined && pageSize !== undefined) {
+        const start = (page - 1) * pageSize
+        const end = start + pageSize
+        users = users.slice(start, end)
+    }
+
+    return { users, total }
 }
 
 export function get(id: number): User {
@@ -45,4 +72,18 @@ export function remove(id: number) {
     }
     const removedUser = data.users.splice(index, 1)[0]
     return removedUser as User
+}
+
+declare global {
+    interface Array<T> {
+        sortBy(key: string, descending?: boolean): T[]
+    }
+}
+
+Array.prototype.sortBy = function (key: string, descending: boolean = false) {
+    return this.sort((a, b) => {
+        if (a[key] < b[key]) return descending ? 1 : -1
+        if (a[key] > b[key]) return descending ? -1 : 1
+        return 0
+    })
 }
