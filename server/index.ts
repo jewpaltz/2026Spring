@@ -1,13 +1,16 @@
 import express from "express"
 import usersController from "./controllers/users"
+import { DataEnvelope } from "./types"
 
 const PORT = 3000
 const SERVER = "localhost"
 
 const app = express()
 
+///////// Middleware
 app.use(express.json()) // Middleware to parse JSON request bodies
 
+///////// Routes
 app.get("/", (_req, res) => {
     res.send("Hello World!")
 })
@@ -15,6 +18,26 @@ app.get("/", (_req, res) => {
         res.send("The best plan of my life!")
     })
     .use("/users", usersController)
+
+//////// Error handling
+app.use(
+    (
+        err: Error,
+        _req: express.Request,
+        res: express.Response,
+        _next: express.NextFunction,
+    ) => {
+        console.error(err)
+
+        const response: DataEnvelope<null> = {
+            data: null,
+            isSuccess: false,
+            message: err.message ?? "An error occurred",
+        }
+
+        res.status((err as any).status ?? 500).send(response)
+    },
+)
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://${SERVER}:${PORT}`)
