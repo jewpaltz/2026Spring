@@ -1,13 +1,17 @@
 /* B"H
  */
 
-import data from '../data/products.json'
 import { defineStore } from 'pinia'
-import type { Product } from '../types'
+import type { Product } from '../../../server/types'
 import { ref } from 'vue'
+import { api } from '../services/myFetch'
 
 export const useProductsStore = defineStore('products', () => {
-  const products = ref<Product[]>(data.products)
+  api('users').then((data) => {
+    console.log(data)
+  })
+
+  const products = ref<Product[]>([])
 
   return { products }
 })
