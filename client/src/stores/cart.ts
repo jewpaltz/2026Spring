@@ -5,6 +5,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Product } from '../../../server/types'
 import { useProductsStore } from './products'
+import useSessionStore from './session'
 
 export type CartItem = {
   product: Product
@@ -16,6 +17,7 @@ export const useCartStore = defineStore('cart', () => {
   const isCartSidebarOpen = ref(false)
 
   const productsStore = useProductsStore()
+  const sessionStore = useSessionStore()
 
   function addItem(productId: number) {
     const item = items.value.find((item) => item.product.id === productId)
@@ -28,6 +30,7 @@ export const useCartStore = defineStore('cart', () => {
     if (product) {
       items.value.push({ product, quantity: 1 })
     }
+    sessionStore.addMessage(`Added ${product?.title} to cart`, 'success')
   }
 
   function removeItem(productId: number) {

@@ -1,13 +1,15 @@
 /* B"H
  */
 
-import { api } from './myFetch'
+import useSessionStore from '../stores/session'
 import type { DataListEnvelope, Product } from '../../../server/types'
 
 export function getProducts() {
-  return api<DataListEnvelope<Product>>('products')
+  const session = useSessionStore()
+  return session.api<DataListEnvelope<Product>>('products')
 }
 
 export function getProduct(id: number) {
-  return api<Product>(`products/${id}`)
+  const session = useSessionStore()
+  return session.api<Product>(`products/${id}`)
 }
