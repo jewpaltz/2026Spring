@@ -1,7 +1,7 @@
 /* B"H
  */
 
-export { DataEnvelope, DataListEnvelope } from "./dataEnvelopes"
+export type { DataEnvelope, DataListEnvelope } from "./dataEnvelopes"
 
 export type ProductReview = {
     rating: number

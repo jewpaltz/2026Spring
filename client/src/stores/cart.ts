@@ -3,7 +3,7 @@
 
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Product } from '../types'
+import type { Product } from '../../../server/types'
 import { useProductsStore } from './products'
 
 export type CartItem = {
