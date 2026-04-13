@@ -6,22 +6,22 @@ http://localhost:3000
 GET http://localhost:3000/suny
 
 ###
-GET http://localhost:3000/users
+GET http://localhost:3000/api/v1/users
 
 ###
-GET http://localhost:3000/users?search=&page=1&pageSize=5
+GET http://localhost:3000/api/v1/users?search=&page=1&pageSize=5
 
 ###
-GET http://localhost:3000/users/count
+GET http://localhost:3000/api/v1/users/count
 
 ###
-GET http://localhost:3000/users/31
+GET http://localhost:3000/api/v1/users/31
 
 ###
-POST http://localhost:3000/
+POST http://localhost:3000/api/v1/
 
 ###
-POST http://localhost:3000/users
+POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
@@ -32,12 +32,16 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/users/31
+DELETE http://localhost:3000/api/v1/users/31
 
 ###
-PATCH http://localhost:3000/users/31
+PATCH http://localhost:3000/api/v1/users/31
 Content-Type: application/json
 
 {
     "lastName": "Johnson"
 }
+
+###
+GET http://localhost:3000/api/v1/products
+

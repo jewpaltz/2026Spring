@@ -1,5 +1,6 @@
 import express from "express"
 import usersController from "./controllers/users"
+import productController from "./controllers/products"
 import { DataEnvelope } from "./types"
 
 const PORT = 3000
@@ -23,7 +24,7 @@ app.get("/", (_req, res) => {
         res.send("The best plan of my life!")
     })
     .use("/api/v1/users", usersController)
-
+    .use("/api/v1/products", productController)
 //////// Error handling
 app.use(
     (
