@@ -10,8 +10,8 @@ import { User, DataEnvelope, DataListEnvelope } from "../types"
 const app = Router()
 
 app.get("/", (req, res) => {
-    const { users, count } = getAll(req.query)
-    const sanitizedUsers = users.map((x) => ({
+    const { list, count } = getAll(req.query)
+    const sanitizedUsers = list.map((x) => ({
         ...x,
         password: undefined,
     }))
