@@ -2,13 +2,13 @@
  */
 
 import { defineStore } from 'pinia'
-import type { Product } from '../../../server/types'
+import type { DataListEnvelope, Product, User } from '../../../server/types'
 import { ref } from 'vue'
-import { api } from '../services/myFetch'
+import { getProducts } from '@/services/products'
 
 export const useProductsStore = defineStore('products', () => {
-  api('users').then((data) => {
-    console.log(data)
+  getProducts().then((data) => {
+    products.value = data.data
   })
 
   const products = ref<Product[]>([])
