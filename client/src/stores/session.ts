@@ -28,10 +28,10 @@ export const useSessionStore = defineStore('session', () => {
   const loadingCount = ref(0)
   const isLoading = computed(() => loadingCount.value > 0)
 
-  function api<T>(endpoint: string) {
+  function api<T>(endpoint: string, data?: unknown, options: RequestInit = {}) {
     loadingCount.value++
 
-    return myApi<T>(endpoint)
+    return myApi<T>(endpoint, data, options)
       .catch((error) => {
         handleError(error)
         throw error
