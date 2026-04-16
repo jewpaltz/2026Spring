@@ -1,24 +1,25 @@
 /*  B"H
  */
 
-import type { Product } from "../types"
-import data1 from "../data/products.json"
+import type { CartItem } from "../types"
+// Models can use other models, but should not use controllers or routes.
+import { get as getProduct } from "./products"
 import { PagingRequest } from "../types/dataEnvelopes"
 
-type ItemType = Product
+type ItemType = CartItem
 const data = {
-    ...data1,
-    items: data1.products,
+    items: {} as Record<number, CartItem[]>,
 }
-
-export function getAll(params: PagingRequest) {
-    let list = data.items as ItemType[]
+export function getAll(userId: number, params: PagingRequest) {
+    let list = data.items[userId] || ([] as ItemType[])
     const count = list.length
 
     if (params?.search) {
         const search = params.search.toLowerCase()
         list = list.filter((item) =>
-            `${item.title} ${item.description}`.toLowerCase().includes(search),
+            `${item.product.title} ${item.product.description}`
+                .toLowerCase()
+                .includes(search),
         )
     }
     if (params?.sortBy) {
@@ -32,44 +33,34 @@ export function getAll(params: PagingRequest) {
     return { list, count }
 }
 
-export function get(id: number): ItemType {
-    const item = data.items.find((item) => item.id === id)
-    if (!item) {
-        const error = { status: 404, message: "Product not found" }
-        throw error
-    }
-    return item as ItemType
-}
+export function update(
+    userId: number,
+    productId: number,
+    quantity: number,
+): ItemType {
+    // If user doesn't have a cart, create one
+    data.items[userId] = data.items[userId] || []
 
-export function create(item: ItemType) {
-    const newItemType = {
-        ...item,
-        id: data.items.length + 1,
-    }
-    data.items.push(newItemType as any)
-    return newItemType
-}
-
-export function update(id: number, item: Partial<ItemType>) {
-    const index = data.items.findIndex((u) => u.id === id)
+    // If item isn't in cart, add it.
+    const index = data.items[userId].findIndex(
+        (u) => u.product.id === productId,
+    )
     if (index === -1) {
-        const error = { status: 404, message: "Product not found" }
-        throw error
+        const newItem: ItemType = {
+            product: getProduct(productId),
+            quantity,
+        }
+        data.items[userId].push(newItem)
+        return newItem
     }
-    const updatedItemType = {
-        ...data.items[index],
-        ...item,
-    }
-    data.items[index] = updatedItemType as any
-    return updatedItemType
-}
 
-export function remove(id: number) {
-    const index = data.items.findIndex((u) => u.id === id)
-    if (index === -1) {
-        const error = { status: 404, message: "Product not found" }
-        throw error
+    // Otherwise, update quantity
+    const item = data.items[userId][index]
+    item.quantity += quantity
+
+    // If quantity is 0 or less, remove item from cart
+    if (item.quantity <= 0) {
+        data.items[userId].splice(index, 1)
     }
-    const removedItemType = data.items.splice(index, 1)[0]
-    return removedItemType as ItemType
+    return item
 }

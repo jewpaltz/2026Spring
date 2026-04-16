@@ -24,6 +24,11 @@ export type Product = {
     thumbnail: string
 }
 
+export type CartItem = {
+    product: Product
+    quantity: number
+}
+
 export type UserRole = "admin" | "moderator" | "user"
 
 export type UserAddress = {
