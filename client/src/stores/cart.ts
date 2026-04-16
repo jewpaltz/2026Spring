@@ -3,7 +3,7 @@
 
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Product } from '../../../server/types'
+import type { DataListEnvelope, Product } from '../../../server/types'
 import { useProductsStore } from './products'
 import useSessionStore from './session'
 
@@ -18,6 +18,15 @@ export const useCartStore = defineStore('cart', () => {
 
   const productsStore = useProductsStore()
   const sessionStore = useSessionStore()
+
+  function loadCart() {
+    sessionStore
+      .api<DataListEnvelope<CartItem>>(`cart/${sessionStore.user?.id ?? 1}`)
+      .then((response) => {
+        items.value = response.data
+      })
+  }
+  loadCart()
 
   function addItem(productId: number) {
     const item = items.value.find((item) => item.product.id === productId)

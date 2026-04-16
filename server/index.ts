@@ -1,6 +1,7 @@
 import express from "express"
 import usersController from "./controllers/users"
 import productController from "./controllers/products"
+import cartController from "./controllers/cart"
 import { DataEnvelope } from "./types"
 
 const PORT = 3000
@@ -25,6 +26,8 @@ app.get("/", (_req, res) => {
     })
     .use("/api/v1/users", usersController)
     .use("/api/v1/products", productController)
+    .use("/api/v1/cart", cartController)
+
 //////// Error handling
 app.use(
     (

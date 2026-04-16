@@ -45,3 +45,14 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/v1/products
 
+###
+GET http://localhost:3000/api/v1/cart/1
+
+###
+POST http://localhost:3000/api/v1/cart/1/
+Content-Type: application/json
+
+{
+    "productId": 22,
+    "quantity": 1
+}
