@@ -2,8 +2,8 @@
  */
 
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import type { DataListEnvelope, Product } from '../../../server/types'
+import { ref, computed, watch } from 'vue'
+import type { DataEnvelope, DataListEnvelope, Product } from '../../../server/types'
 import { useProductsStore } from './products'
 import useSessionStore from './session'
 
@@ -29,21 +29,51 @@ export const useCartStore = defineStore('cart', () => {
   loadCart()
 
   function addItem(productId: number) {
+    updateItem(productId, 1)
+  }
+
+  function updateItem(productId: number, quantity: number = 1) {
+    saveChangesToCartItem(productId, quantity)
+
     const item = items.value.find((item) => item.product.id === productId)
     if (item) {
-      item.quantity++
+      item.quantity += quantity
       return
     }
 
     const product = productsStore.products.find((p) => p.id === productId)
     if (product) {
-      items.value.push({ product, quantity: 1 })
+      items.value.push({ product, quantity })
     }
-    sessionStore.addMessage(`Added ${product?.title} to cart`, 'success')
   }
+
+  function saveChangesToCartItem(productId: number, quantity: number) {
+    sessionStore
+      .api<DataEnvelope<CartItem>>(`cart/${sessionStore.user?.id ?? 1}`, { productId, quantity })
+      .then((response) => {
+        if (response.message) {
+          sessionStore.addMessage(response.message, response.isSuccess ? 'info' : 'danger')
+        }
+      })
+  }
+
+  watch(
+    () => items.value.map((item) => ({ ...item })),
+    (newItems, oldItems) => {
+      for (const newItem of newItems) {
+        const oldItem = oldItems.find((item) => item.product.id === newItem.product.id)
+        // Only update if we are NOT adding or deleting items and only if the quantity has changed
+        if (oldItem && oldItem.quantity !== newItem.quantity) {
+          saveChangesToCartItem(newItem.product.id, newItem.quantity - (oldItem.quantity ?? 0))
+        }
+      }
+    },
+    { deep: true },
+  )
 
   function removeItem(productId: number) {
     items.value = items.value.filter((item) => item.product.id !== productId)
+    saveChangesToCartItem(productId, 0)
   }
 
   function clearCart() {
