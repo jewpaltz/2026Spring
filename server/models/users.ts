@@ -5,14 +5,20 @@ import type { User } from "../types"
 import data1 from "../data/users.json"
 import { PagingRequest } from "../types/dataEnvelopes"
 
+import { connect } from "./database"
+
 type ItemType = User
 const data = {
     ...data1,
     items: data1.users,
 }
 
-export function getAll(params: PagingRequest) {
-    let list = data.items as ItemType[]
+export async function getAll(params: PagingRequest) {
+    const conn = connect()
+    const response = await conn
+        .from("users")
+        .select("first_name, last_name, email, id")
+    let list = response.data as ItemType[]
     const count = list.length
 
     if (params?.search) {

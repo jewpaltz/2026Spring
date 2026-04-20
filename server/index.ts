@@ -4,9 +4,12 @@ import productController from "./controllers/products"
 import cartController from "./controllers/cart"
 import { DataEnvelope } from "./types"
 
-const PORT = 3000
-const SERVER = "localhost"
-const PUBLIC_DIR = "./client/dist"
+import { config } from "dotenv"
+config() // Load environment variables from .env file
+
+const PORT = process.env.PORT || 3000
+const SERVER = process.env.SERVER || "localhost"
+const PUBLIC_DIR = process.env.PUBLIC_DIR || "./client/dist"
 
 const app = express()
 
