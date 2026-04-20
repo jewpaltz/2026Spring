@@ -6,6 +6,7 @@ import { DataEnvelope } from "./types"
 
 const PORT = 3000
 const SERVER = "localhost"
+const PUBLIC_DIR = "./client/dist"
 
 const app = express()
 
@@ -18,9 +19,7 @@ app.use((_req, res, next) => {
 }).use(express.json()) // Middleware to parse JSON request bodies
 
 ///////// Routes
-app.get("/", (_req, res) => {
-    res.send("Hello World!")
-})
+app.use(express.static(PUBLIC_DIR))
     .get("/suny", (_req, res) => {
         res.send("The best plan of my life!")
     })
