@@ -1,11 +1,11 @@
+import { config } from "dotenv"
+config()
 import express from "express"
 import usersController from "./controllers/users"
 import productController from "./controllers/products"
 import cartController from "./controllers/cart"
 import { DataEnvelope } from "./types"
-import { config } from "dotenv"
 
-config()
 
 const PORT = process.env.PORT ?? 3000
 const SERVER = process.env.SERVER ?? "localhost"
