@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue';
 import useSessionStore from './stores/session';
 import MessageList from './components/MessageList.vue';
+import DialogBoxes from './components/DialogBoxes.vue';
 const sessionStore = useSessionStore();
 
 </script>
@@ -15,7 +16,7 @@ const sessionStore = useSessionStore();
     <MessageList />
     <RouterView />
   </div>
-
+  <DialogBoxes />
 </template>
 
 <style scoped></style>
