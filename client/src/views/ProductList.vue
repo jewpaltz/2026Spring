@@ -6,6 +6,7 @@ import { useCartStore } from '@/stores/cart';
 
 
 const products = useProductsStore()
+products.loadProducts()
 const cart = useCartStore()
 
 function addToCart(productId: number) {

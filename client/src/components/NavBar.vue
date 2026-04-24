@@ -42,21 +42,25 @@ function toggleCart() {
                         Products
                     </RouterLink>
 
+                    <RouterLink to="/about" active-class="is-active" class="navbar-item">
+                        About
+                    </RouterLink>
+
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
-                            More
+                            Admin
                         </a>
 
                         <div class="navbar-dropdown">
-                            <RouterLink to="/about" active-class="is-active" class="navbar-item">
-                                About
+                            <RouterLink to="/admin/products" active-class="is-active" class="navbar-item">
+                                Products
                             </RouterLink>
-                            <RouterLink to="/contact" active-class="is-active" class="navbar-item">
-                                Contact
+                            <RouterLink to="/admin/users" active-class="is-active" class="navbar-item">
+                                Users
                             </RouterLink>
                             <hr class="navbar-divider">
                             <RouterLink to="/report-issue" active-class="is-active" class="navbar-item">
-                                Report an issue
+                                Placeholder
                             </RouterLink>
                         </div>
                     </div>
