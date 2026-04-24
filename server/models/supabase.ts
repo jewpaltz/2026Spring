@@ -28,7 +28,7 @@ export function toCamelCase(
 ): Record<string, unknown> {
     const result: Record<string, unknown> = {}
     for (const key in obj) {
-        const camelKey = key.replace(/_([a-z])/g, (match, p1) =>
+        const camelKey = key.replace(/_([a-z])/g, (_match, p1) =>
             p1.toUpperCase(),
         )
         result[camelKey] = obj[key]
