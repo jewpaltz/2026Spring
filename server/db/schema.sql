@@ -52,19 +52,16 @@ CREATE TABLE users (
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE carts (
-    id         INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_id    INTEGER     REFERENCES users(id) ON DELETE CASCADE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
 -- Maps to: CartItem (join products on product_id to get the full product)
 CREATE TABLE cart_items (
     id         INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    cart_id    INTEGER     NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+    user_id    INTEGER     NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     product_id INTEGER     NOT NULL REFERENCES products(id) ON DELETE RESTRICT,
     quantity   INTEGER     NOT NULL DEFAULT 1 CHECK (quantity > 0),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- In order to upsert cart items, we need a unique constraint on (user_id, product_id)
+ALTER TABLE cart_items
+ADD CONSTRAINT unique_user_product UNIQUE (user_id, product_id);

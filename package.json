@@ -12,7 +12,8 @@
         "build": "tsc && npm run build:client",
         "build:client": "cd client && npm install && npm run build",
         "start": "node dist/index.js",
-        "dev": "tsx watch server/index.ts"
+        "dev": "tsx watch server/index.ts",
+        "seed": "tsx server/models/seed_data.ts"
     },
     "dependencies": {
         "@supabase/supabase-js": "^2.104.1",

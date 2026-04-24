@@ -1,10 +1,10 @@
 /*  B"H
  */
 
-import type { Product } from "../types"
+import { productKeys, type Product } from "../types"
 import data1 from "../data/products.json"
 import { PagingRequest } from "../types/dataEnvelopes"
-import { connect } from "./supabase"
+import { connect, filterKeys, toCamelCase, toSnakeCase } from "./supabase"
 
 export const TABLE_NAME = "products"
 
@@ -24,9 +24,9 @@ export async function getAll(params: PagingRequest) {
             `title.ilike.%${params.search}%,description.ilike.%${params.search}%`,
         )
     }
-    if (params?.sortBy) {
-        query = query.order(params.sortBy, { ascending: !params.descending })
-    }
+    params.sortBy = params.sortBy ?? "id"
+    query = query.order(params.sortBy, { ascending: !params.descending })
+
     const page = params?.page || 1
     const pageSize = params?.pageSize || 10
     const start = (page - 1) * pageSize
@@ -38,7 +38,7 @@ export async function getAll(params: PagingRequest) {
         throw result.error
     }
 
-    const list = result.data as ItemType[]
+    const list = result.data.map(toCamelCase) as ItemType[]
 
     const count = result.count ?? 0
 
@@ -52,7 +52,7 @@ export async function get(id: number): Promise<ItemType> {
     if (result.error) {
         throw result.error
     }
-    const item = result.data as ItemType
+    const item = toCamelCase(result.data) as ItemType
 
     if (!item) {
         const error = { status: 404, message: "Product not found" }
@@ -63,25 +63,29 @@ export async function get(id: number): Promise<ItemType> {
 
 export async function create(item: Exclude<ItemType, "id">) {
     const db = connect()
-    const result = await db.from(TABLE_NAME).insert(item).select().single()
+    const result = await db
+        .from(TABLE_NAME)
+        .insert(toSnakeCase(item))
+        .select()
+        .single()
     if (result.error) {
         throw result.error
     }
-    return result.data as ItemType
+    return toCamelCase(result.data) as ItemType
 }
 
 export async function update(id: number, item: Partial<ItemType>) {
     const db = connect()
     const result = await db
         .from(TABLE_NAME)
-        .update(item)
+        .update(toSnakeCase({ ...item, id: undefined }))
         .eq("id", id)
         .select()
         .single()
     if (result.error) {
         throw result.error
     }
-    return result.data as ItemType
+    return toCamelCase(result.data) as ItemType
 }
 
 export async function remove(id: number) {
@@ -95,5 +99,17 @@ export async function remove(id: number) {
     if (result.error) {
         throw result.error
     }
-    return result.data as ItemType
+    return toCamelCase(result.data) as ItemType
+}
+
+export async function seed() {
+    const db = connect()
+    const items = data.items.map((item) =>
+        toSnakeCase(filterKeys(item, productKeys)),
+    )
+    const result = await db.from(TABLE_NAME).insert(items)
+    if (result.error) {
+        throw result.error
+    }
+    return result.count
 }
