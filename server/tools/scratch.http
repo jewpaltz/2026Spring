@@ -18,6 +18,14 @@ GET http://localhost:3000/api/v1/users/count
 GET http://localhost:3000/api/v1/users/31
 
 ###
+POST http://localhost:3000/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "emily.johnson@x.dummyjson.com"
+}
+
+###
 POST http://localhost:3000/api/v1/
 
 ###

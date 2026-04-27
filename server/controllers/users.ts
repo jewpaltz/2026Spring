@@ -4,7 +4,15 @@ Users Controller
 */
 
 import { Router } from "express"
-import { getAll, get, create, update, remove, seed } from "../models/users"
+import {
+    getAll,
+    get,
+    create,
+    update,
+    remove,
+    seed,
+    login,
+} from "../models/users"
 import { User, DataEnvelope, DataListEnvelope } from "../types"
 
 const app = Router()
@@ -34,6 +42,15 @@ app.get("/", async (req, res) => {
         const { id } = req.params
         const response: DataEnvelope<User> = {
             data: await get(Number(id)),
+            isSuccess: true,
+        }
+        res.send(response)
+    })
+    .post("/login", async (req, res) => {
+        const { email, password } = req.body
+
+        const response: DataEnvelope<{ token: string; user: User }> = {
+            data: await login(email, password),
             isSuccess: true,
         }
         res.send(response)

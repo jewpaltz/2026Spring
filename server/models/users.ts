@@ -1,10 +1,11 @@
 /*  B"H
  */
-
+import { sign } from "jsonwebtoken"
 import { userAddressKeys, userKeys, type User } from "../types"
 import data1 from "../data/users.json"
 import { PagingRequest } from "../types/dataEnvelopes"
 import { connect, filterKeys, toCamelCase, toSnakeCase } from "./supabase"
+import { error } from "console"
 
 const TABLE_NAME = "users"
 
@@ -49,6 +50,42 @@ export async function get(id: number): Promise<ItemType> {
         throw error
     }
     return toCamelCase(result.data) as ItemType
+}
+
+export async function login(
+    email: string,
+    _password: string,
+): Promise<{ token: string; user: ItemType }> {
+    const db = connect()
+    const result = await db
+        .from(TABLE_NAME)
+        .select("*")
+        .eq("email", email)
+        .single()
+    if (result.error) {
+        throw error
+    }
+    const user = toCamelCase(result.data) as ItemType
+    /* If we had passwords, we would verify them here.
+    if (!user || user.password !== _password) {
+        const error = { status: 401, message: "Invalid email or password" }
+        throw error
+    }
+    */
+    return new Promise((resolve, reject) => {
+        sign(
+            user,
+            process.env.JWT_SECRET || "secret",
+            { expiresIn: "1h" },
+            (err, token) => {
+                if (err || !token) {
+                    reject(err || new Error("Token generation failed"))
+                    return
+                }
+                resolve({ token, user })
+            },
+        )
+    })
 }
 
 export async function create(user: ItemType): Promise<ItemType> {

@@ -5,7 +5,7 @@ import usersController from "./controllers/users"
 import productController from "./controllers/products"
 import cartController from "./controllers/cart"
 import { DataEnvelope } from "./types"
-
+import { validateJWT } from "./middleware/auth"
 
 const PORT = process.env.PORT ?? 3000
 const SERVER = process.env.SERVER ?? "localhost"
@@ -19,7 +19,9 @@ app.use((_req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE") // Allow specific HTTP methods
     res.setHeader("Access-Control-Allow-Headers", "*") // Allow specific headers
     next()
-}).use(express.json()) // Middleware to parse JSON request bodies
+})
+    .use(express.json()) // Middleware to parse JSON request bodies
+    .use(validateJWT) // Middleware to validate JWT and attach user info to the request
 
 ///////// Routes
 app.use(express.static(STATIC_DIR))
