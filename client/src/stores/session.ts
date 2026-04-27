@@ -2,7 +2,7 @@
  */
 
 import { defineStore } from 'pinia'
-import type { User } from '../../../server/types'
+import { type DataEnvelope, type User } from '../../../server/types'
 import { computed, ref } from 'vue'
 
 import { api as myApi } from '../services/myFetch'
@@ -14,6 +14,27 @@ export type FeedbackMessage = {
 
 export const useSessionStore = defineStore('session', () => {
   const user = ref<User | null>(null)
+  const token = ref<string | null>(null)
+
+  async function login(email: string, password: string) {
+    const response = await myApi<DataEnvelope<{ user: User; token: string }>>(
+      'users/login',
+      { email, password },
+      { method: 'POST' },
+    )
+    if (!response.isSuccess) {
+      addMessage(response.message || 'Login failed', 'danger')
+      return
+    }
+    const { user: loggedInUser, token: authToken } = response.data
+    user.value = loggedInUser
+    token.value = authToken
+  }
+
+  function logout() {
+    user.value = null
+    token.value = null
+  }
 
   const messages = ref<FeedbackMessage[]>([])
   function addMessage(text: string, type: FeedbackMessage['type'] = 'info') {
@@ -31,6 +52,11 @@ export const useSessionStore = defineStore('session', () => {
   function api<T>(endpoint: string, data?: unknown, options: RequestInit = {}) {
     loadingCount.value++
 
+    options.headers = {
+      ...(token.value ? { Authorization: `Bearer ${token.value}` } : {}),
+      ...options.headers,
+    }
+
     return myApi<T>(endpoint, data, options)
       .catch((error) => {
         handleError(error)
@@ -43,6 +69,9 @@ export const useSessionStore = defineStore('session', () => {
 
   return {
     user,
+    token,
+    login,
+    logout,
     messages,
     addMessage,
     handleError,

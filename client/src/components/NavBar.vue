@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cart';
+import useSessionStore from '@/stores/session';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const isActive = ref(false);
 const cartStore = useCartStore();
+const sessionStore = useSessionStore();
+
+function login() {
+    sessionStore.login('emily.johnson@x.dummyjson.com', 'password');
+}
 
 function toggleCart() {
     console.log('Toggling cart sidebar');
@@ -79,13 +85,25 @@ function toggleCart() {
 
                     </div>
                     <div class="navbar-item">
-                        <div class="buttons">
+                        <div v-if="sessionStore.user">
+                            <img :src="sessionStore.user.image" alt="Profile Picture" class="is-rounded" width="30"
+                                 height="30">
+                            <div style="line-height: 1em;">
+                                {{ sessionStore.user.firstName }} {{ sessionStore.user.lastName }}
+                            </div>
+                            <div>
+                                (<a @click="sessionStore.logout">
+                                    Not You?
+                                </a>)
+                            </div>
+                        </div>
+                        <div class="buttons" v-else>
                             <RouterLink to="/sign-up" active-class="is-active" class="button is-primary">
                                 <strong>Sign up</strong>
                             </RouterLink>
-                            <RouterLink to="/log-in" active-class="is-active" class="button is-light">
+                            <button @click="login" class="button is-light">
                                 Log in
-                            </RouterLink>
+                            </button>
                         </div>
                     </div>
                 </div>
