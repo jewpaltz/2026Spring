@@ -22,7 +22,7 @@ export async function getAll(params: PagingRequest) {
     if (params?.search) {
         const search = params.search.toLowerCase()
         query = query.or(
-            `firstName.ilike.%${search}%,lastName.ilike.%${search}%,email.ilike.%${search}%`,
+            `first_name.ilike.%${search}%,last_name.ilike.%${search}%,email.ilike.%${search}%`,
         )
     }
     if (params?.sortBy) {

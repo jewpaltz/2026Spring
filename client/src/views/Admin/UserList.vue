@@ -4,17 +4,19 @@ import { RouterLink } from 'vue-router';
 import type { User } from '../../../../server/types';
 import { confirm } from '@/components/DialogBoxes.vue';
 import PaginationControls from '@/components/PaginationControls.vue';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
+import type { PagingRequest } from '../../../../server/types/dataEnvelopes';
+import { watchDebounced } from '@vueuse/core';
 
 const users = useUsersStore()
-const pagination = ref({ page: 1, pageSize: 10 })
+const pagination = ref<PagingRequest>({ page: 1, pageSize: 10 })
 if (!users.totalCount) {
     users.loadUsers(pagination.value)
 }
 
-watch(pagination, (newPagination) => {
+watchDebounced(pagination, (newPagination) => {
     users.loadUsers(newPagination)
-}, { deep: 1 })
+}, { debounce: 500, deep: true })
 
 async function remove(user: User) {
     if (await confirm("Delete", `Are you sure that you want to delete ${user.firstName} ${user.lastName}?`)) {
@@ -34,6 +36,16 @@ async function remove(user: User) {
                     <th>Email</th>
                     <th>Role</th>
                     <th>
+                        <div class="control has-icons-left" style="display: inline-block; margin-right: 1em;">
+
+                            <input type="text" class="input is-rounded is-small" placeholder="Search..."
+                                   v-model="pagination.search">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+
+
                         <RouterLink to="/admin/users/edit" class="button is-small is-primary">
                             <span>New</span>
                             <span class="icon">

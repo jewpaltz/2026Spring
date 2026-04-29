@@ -4,17 +4,19 @@ import { RouterLink } from 'vue-router';
 import type { Product } from '../../../../server/types';
 import { confirm } from '@/components/DialogBoxes.vue';
 import PaginationControls from '@/components/PaginationControls.vue';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
+import { watchDebounced } from '@vueuse/core';
+import type { PagingRequest } from '../../../../server/types/dataEnvelopes';
 
 const products = useProductsStore()
-const pagination = ref({ page: 1, pageSize: 10 })
+const pagination = ref<PagingRequest>({ page: 1, pageSize: 10 })
 if (!products.totalCount) {
     products.loadProducts(pagination.value)
 }
 
-watch(pagination, (newPagination) => {
+watchDebounced(pagination, (newPagination) => {
     products.loadProducts(newPagination)
-}, { deep: 1 })
+}, { debounce: 500, deep: true })
 
 async function remove(product: Product) {
     if (await confirm("Delete", `Are you sure that you want to delete ${product.title}`)) {
@@ -34,7 +36,17 @@ async function remove(product: Product) {
                     <th>Brand</th>
                     <th>Price</th>
                     <th>Tags</th>
-                    <th>Description</th>
+                    <th>
+                        Description
+                        <div class="control has-icons-left" style="display: inline-block; margin-left: 1em;">
+
+                            <input type="text" class="input is-rounded is-small" placeholder="Search..."
+                                   v-model="pagination.search">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                    </th>
                     <th>
                         <RouterLink to="/admin/products/edit" class="button is-small is-primary">
                             <span>New</span>
@@ -57,7 +69,7 @@ async function remove(product: Product) {
                     <td>
                         <div class="tags">
                             <span v-for="tag in product.tags" :key="tag" class="tag is-warning is-light">{{ tag
-                                }}</span>
+                            }}</span>
                         </div>
 
                     </td>
