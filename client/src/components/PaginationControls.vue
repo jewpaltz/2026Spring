@@ -4,10 +4,12 @@ import { computed } from 'vue';
 const props = defineProps<{
     currentPage: number;
     totalPages: number;
+    pageSize?: number;
 }>();
 
 const emit = defineEmits<{
     (e: 'update:currentPage', page: number): void;
+    (e: 'update:pageSize', size: number): void;
 }>();
 
 function goTo(page: number) {
@@ -58,7 +60,18 @@ const pages = computed(() => {
                 </li>
             </template>
         </ul>
+        <div class="select" v-if="props.pageSize" style="order: 2;">
+            <select :value="props.pageSize"
+                    @change="emit('update:pageSize', Number(($event.target as HTMLSelectElement)?.value))">
+                <option :value="5">5 per page</option>
+                <option :value="10">10 per page</option>
+                <option :value="20">20 per page</option>
+                <option :value="50">50 per page</option>
+            </select>
+        </div>
+
     </nav>
+
 </template>
 
 <style scoped></style>

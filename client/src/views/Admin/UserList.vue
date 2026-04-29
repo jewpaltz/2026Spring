@@ -67,7 +67,7 @@ async function remove(user: User) {
                 </tr>
             </tbody>
         </table>
-        <PaginationControls v-model:current-page="pagination.page"
+        <PaginationControls v-model:current-page="pagination.page" v-model:page-size="pagination.pageSize"
                             :total-pages="Math.ceil((users.totalCount ?? 1) / pagination.pageSize)" />
     </div>
 </template>
