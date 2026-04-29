@@ -136,8 +136,8 @@ export async function seed() {
     const db = connect()
     const items = data.items.map((item) => ({
         // flatten the address fields into the main user object
-        ...toSnakeCase(filterKeys(item, userKeys)),
-        ...toSnakeCase(filterKeys(item.address, userAddressKeys)),
+        ...toSnakeCase(filterKeys(item, userKeys as any)),
+        ...toSnakeCase(filterKeys(item.address, userAddressKeys as any)),
     }))
     const result = await db.from(TABLE_NAME).insert(items)
     if (result.error) {

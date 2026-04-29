@@ -26,6 +26,16 @@ const router = createRouter({
       component: () => import('../views/Admin/ProductEdit.vue'),
     },
     {
+      path: '/admin/users',
+      name: 'admin-users',
+      component: () => import('../views/Admin/UserList.vue'),
+    },
+    {
+      path: '/admin/users/edit/:id?',
+      name: 'admin-user-edit',
+      component: () => import('../views/Admin/UserEdit.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       component: AboutView,
