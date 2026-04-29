@@ -5,14 +5,20 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { DataEnvelope, DataListEnvelope, User } from '../../../server/types'
 import useSessionStore from './session'
+import { type PagingRequest } from '../../../server/types/dataEnvelopes'
 
 export const useUsersStore = defineStore('users', () => {
   const session = useSessionStore()
   const users = ref<User[]>([])
+  const totalCount = ref<number | null>(null)
 
-  async function loadUsers() {
-    const data = await session.api<DataListEnvelope<User>>('users')
+  async function loadUsers(pagingParams?: PagingRequest) {
+    const url = pagingParams
+      ? `users?${new URLSearchParams(pagingParams as Record<string, string>)}`
+      : 'users'
+    const data = await session.api<DataListEnvelope<User>>(url)
     users.value = data.data
+    totalCount.value = data.total
   }
 
   // Gets the complete user details for a given user ID. The user in the list may be incomplete (e.g. missing description), so this is used to get the full details when needed.
@@ -48,5 +54,5 @@ export const useUsersStore = defineStore('users', () => {
     return data
   }
 
-  return { users, loadUsers, getUser, createUser, updateUser, deleteUser }
+  return { users, loadUsers, getUser, createUser, updateUser, deleteUser, totalCount }
 })

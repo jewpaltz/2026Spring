@@ -3,9 +3,18 @@ import { useUsersStore } from '@/stores/users';
 import { RouterLink } from 'vue-router';
 import type { User } from '../../../../server/types';
 import { confirm } from '@/components/DialogBoxes.vue';
+import PaginationControls from '@/components/PaginationControls.vue';
+import { ref, watch } from 'vue';
 
 const users = useUsersStore()
-users.loadUsers()
+const pagination = ref({ page: 1, pageSize: 10 })
+if (!users.totalCount) {
+    users.loadUsers(pagination.value)
+}
+
+watch(pagination, (newPagination) => {
+    users.loadUsers(newPagination)
+}, { deep: 1 })
 
 async function remove(user: User) {
     if (await confirm("Delete", `Are you sure that you want to delete ${user.firstName} ${user.lastName}?`)) {
@@ -58,8 +67,13 @@ async function remove(user: User) {
                 </tr>
             </tbody>
         </table>
-
+        <PaginationControls v-model:current-page="pagination.page"
+                            :total-pages="Math.ceil((users.totalCount ?? 1) / pagination.pageSize)" />
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.table {
+    margin-bottom: 0;
+}
+</style>

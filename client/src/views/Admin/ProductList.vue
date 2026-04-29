@@ -3,9 +3,18 @@ import { useProductsStore } from '@/stores/products';
 import { RouterLink } from 'vue-router';
 import type { Product } from '../../../../server/types';
 import { confirm } from '@/components/DialogBoxes.vue';
+import PaginationControls from '@/components/PaginationControls.vue';
+import { ref, watch } from 'vue';
 
 const products = useProductsStore()
-products.loadProducts()
+const pagination = ref({ page: 1, pageSize: 10 })
+if (!products.totalCount) {
+    products.loadProducts(pagination.value)
+}
+
+watch(pagination, (newPagination) => {
+    products.loadProducts(newPagination)
+}, { deep: 1 })
 
 async function remove(product: Product) {
     if (await confirm("Delete", `Are you sure that you want to delete ${product.title}`)) {
@@ -48,7 +57,7 @@ async function remove(product: Product) {
                     <td>
                         <div class="tags">
                             <span v-for="tag in product.tags" :key="tag" class="tag is-warning is-light">{{ tag
-                                }}</span>
+                            }}</span>
                         </div>
 
                     </td>
@@ -68,8 +77,14 @@ async function remove(product: Product) {
                 </tr>
             </tbody>
         </table>
+        <PaginationControls v-model:current-page="pagination.page"
+                            :total-pages="Math.ceil((products.totalCount ?? 1) / pagination.pageSize)" />
 
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.table {
+    margin-bottom: 0;
+}
+</style>

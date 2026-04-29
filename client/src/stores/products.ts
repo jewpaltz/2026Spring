@@ -5,14 +5,20 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { DataEnvelope, DataListEnvelope, Product } from '../../../server/types'
 import useSessionStore from './session'
+import type { PagingRequest } from '../../../server/types/dataEnvelopes'
 
 export const useProductsStore = defineStore('products', () => {
   const session = useSessionStore()
   const products = ref<Product[]>([])
+  const totalCount = ref<number | null>(null)
 
-  async function loadProducts() {
-    const data = await session.api<DataListEnvelope<Product>>('products')
+  async function loadProducts(pagination?: PagingRequest) {
+    const url = pagination
+      ? `products?${new URLSearchParams(pagination as Record<string, string>)}`
+      : 'products'
+    const data = await session.api<DataListEnvelope<Product>>(url)
     products.value = data.data
+    totalCount.value = data.total
   }
 
   // Gets the complete product details for a given product ID. The product in the list may be incomplete (e.g. missing description), so this is used to get the full details when needed.
@@ -48,5 +54,13 @@ export const useProductsStore = defineStore('products', () => {
     return data
   }
 
-  return { products, loadProducts, getProduct, createProduct, updateProduct, deleteProduct }
+  return {
+    products,
+    loadProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    totalCount,
+  }
 })
