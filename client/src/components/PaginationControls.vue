@@ -2,10 +2,11 @@
 import { computed } from 'vue';
 
 const props = defineProps<{
-    currentPage: number;
+    currentPage?: number;
     totalPages: number;
     pageSize?: number;
 }>();
+const current = computed(() => props.currentPage ?? 1);
 
 const emit = defineEmits<{
     (e: 'update:currentPage', page: number): void;
@@ -20,7 +21,6 @@ function goTo(page: number) {
 // Build the list of page entries: numbers or 'ellipsis'
 const pages = computed(() => {
     const total = props.totalPages;
-    const current = props.currentPage;
     const result: (number | 'ellipsis')[] = [];
 
     if (total <= 7) {
@@ -29,11 +29,11 @@ const pages = computed(() => {
     }
 
     result.push(1);
-    if (current > 3) result.push('ellipsis');
-    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+    if (current.value > 3) result.push('ellipsis');
+    for (let i = Math.max(2, current.value - 1); i <= Math.min(total - 1, current.value + 1); i++) {
         result.push(i);
     }
-    if (current < total - 2) result.push('ellipsis');
+    if (current.value < total - 2) result.push('ellipsis');
     result.push(total);
 
     return result;
@@ -42,10 +42,10 @@ const pages = computed(() => {
 
 <template>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <a href="#" class="pagination-previous" :class="{ 'is-disabled': currentPage === 1 }"
-           @click.prevent="goTo(currentPage - 1)">Previous</a>
-        <a href="#" class="pagination-next" :class="{ 'is-disabled': currentPage === totalPages }"
-           @click.prevent="goTo(currentPage + 1)">Next page</a>
+        <a href="#" class="pagination-previous" :class="{ 'is-disabled': current === 1 }"
+           @click.prevent="goTo(current - 1)">Previous</a>
+        <a href="#" class="pagination-next" :class="{ 'is-disabled': current === props.totalPages }"
+           @click.prevent="goTo(current + 1)">Next page</a>
         <ul class="pagination-list">
             <template v-for="(page, i) in pages" :key="i">
                 <li v-if="page === 'ellipsis'">
@@ -53,9 +53,9 @@ const pages = computed(() => {
                 </li>
                 <li v-else>
                     <a href="#" class="pagination-link"
-                       :class="{ 'is-current': page === currentPage }"
+                       :class="{ 'is-current': page === current }"
                        :aria-label="`Goto page ${page}`"
-                       :aria-current="page === currentPage ? 'page' : undefined"
+                       :aria-current="page === current ? 'page' : undefined"
                        @click.prevent="goTo(page)">{{ page }}</a>
                 </li>
             </template>

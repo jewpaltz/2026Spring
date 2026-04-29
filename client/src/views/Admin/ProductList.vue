@@ -69,7 +69,7 @@ async function remove(product: Product) {
                     <td>
                         <div class="tags">
                             <span v-for="tag in product.tags" :key="tag" class="tag is-warning is-light">{{ tag
-                            }}</span>
+                                }}</span>
                         </div>
 
                     </td>
@@ -90,7 +90,7 @@ async function remove(product: Product) {
             </tbody>
         </table>
         <PaginationControls v-model:current-page="pagination.page" v-model:page-size="pagination.pageSize"
-                            :total-pages="Math.ceil((products.totalCount ?? 1) / pagination.pageSize)" />
+                            :total-pages="Math.ceil((products.totalCount ?? 1) / (pagination.pageSize ?? 1))" />
 
     </div>
 </template>

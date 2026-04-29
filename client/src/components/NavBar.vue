@@ -84,20 +84,23 @@ function toggleCart() {
                         </a>
 
                     </div>
-                    <div class="navbar-item">
-                        <div v-if="sessionStore.user">
-                            <img :src="sessionStore.user.image" alt="Profile Picture" class="is-rounded" width="30"
-                                 height="30">
-                            <div style="line-height: 1em;">
-                                {{ sessionStore.user.firstName }} {{ sessionStore.user.lastName }}
-                            </div>
-                            <div>
-                                (<a @click="sessionStore.logout">
-                                    Not You?
-                                </a>)
-                            </div>
+
+                    <div v-if="sessionStore.user" class="navbar-item">
+                        <img :src="sessionStore.user.image" alt="Profile Picture" class="is-rounded" width="30"
+                             height="30">
+                        <div style="line-height: 1em;">
+                            {{ sessionStore.user.firstName }} {{ sessionStore.user.lastName }} <br />
+                            <small>{{ sessionStore.user.email }}</small>
                         </div>
-                        <div class="buttons" v-else>
+                        <div>
+                            (<a @click="sessionStore.logout">
+                                Not You?
+                            </a>)
+                        </div>
+                    </div>
+                    <div class="navbar-item" v-else>
+
+                        <div class="buttons">
                             <RouterLink to="/sign-up" active-class="is-active" class="button is-primary">
                                 <strong>Sign up</strong>
                             </RouterLink>

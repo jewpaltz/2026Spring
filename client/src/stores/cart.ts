@@ -26,7 +26,17 @@ export const useCartStore = defineStore('cart', () => {
         items.value = response.data
       })
   }
-  loadCart()
+  watch(
+    () => sessionStore.user,
+    () => {
+      if (sessionStore.user) {
+        loadCart()
+      } else {
+        items.value = []
+      }
+    },
+    { immediate: true },
+  )
 
   function addItem(productId: number) {
     updateItem(productId, 1)
