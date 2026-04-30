@@ -42,21 +42,21 @@ export type CartItem = {
 export type UserRole = "admin" | "moderator" | "user"
 
 export type User = {
-    id: number
+    id?: number
     firstName: string
     lastName: string
-    gender: string
+    gender?: string
     email: string
-    phone: string
-    birthDate: string
-    image: string
-    role: UserRole
-    address: string
-    city: string
-    state: string
-    stateCode: string
-    postalCode: string
-    country: string
+    phone?: string
+    birthDate?: string
+    image?: string
+    role?: UserRole
+    address?: string
+    city?: string
+    state?: string
+    stateCode?: string
+    postalCode?: string
+    country?: string
 }
 export const userKeys = [
     "firstName",

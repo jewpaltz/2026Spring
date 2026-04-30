@@ -24,6 +24,12 @@
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
+    "@types/google.accounts": "^0.0.18",
+    "@types/gapi": "^0.0.47",
+    "@types/gapi.client.calendar-v3": "^0.0.4",
+    "@types/gapi.client.drive-v3": "^0.0.5",
+    "@types/gapi.client.gmail-v1": "^0.0.4",
+    "@types/gapi.client.oauth2-v2": "^0.0.4",
     "@types/node": "^24.11.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",

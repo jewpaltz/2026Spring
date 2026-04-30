@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /*  B"H
  */
 
@@ -5,7 +6,7 @@ import { defineStore } from 'pinia'
 import { type DataEnvelope, type User } from '../../../server/types'
 import { computed, ref } from 'vue'
 
-import { api as myApi } from '../services/myFetch'
+import { loadScript, api as myApi } from '../services/myFetch'
 
 export type FeedbackMessage = {
   type: 'success' | 'danger' | 'info'
@@ -16,19 +17,66 @@ export const useSessionStore = defineStore('session', () => {
   const user = ref<User | null>(null)
   const token = ref<string | null>(null)
 
-  async function login(email: string, password: string) {
-    const response = await myApi<DataEnvelope<{ user: User; token: string }>>(
-      'users/login',
-      { email, password },
-      { method: 'POST' },
-    )
-    if (!response.isSuccess) {
-      addMessage(response.message || 'Login failed', 'danger')
-      return
+  async function login() {
+    await loadScript('https://accounts.google.com/gsi/client', 'google-signin')
+
+    const tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      scope: 'email profile https://www.googleapis.com/auth/calendar.events.readonly',
+      callback: async (response: any) => {
+        if (response.error) {
+          throw new Error(response.error)
+        }
+        console.log({ response })
+        await setUser(response.access_token)
+        await getCalendarEvents(response.access_token)
+      },
+    })
+    tokenClient.requestAccessToken()
+
+    async function setUser(accessToken: string) {
+      const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      const data: gapi.client.oauth2.Userinfo = await response.json()
+      console.log({ data })
+      user.value = {
+        firstName: data.given_name ?? '',
+        lastName: data.family_name ?? '',
+        email: data.email ?? '',
+        image: data.picture ?? '',
+      }
     }
-    const { user: loggedInUser, token: authToken } = response.data
-    user.value = loggedInUser
-    token.value = authToken
+
+    async function getCalendarEvents(googleToken: string) {
+      const response = await fetch(
+        'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+        {
+          headers: {
+            Authorization: `Bearer ${googleToken}`,
+          },
+        },
+      )
+      const data: gapi.client.calendar.Events = await response.json()
+      console.log({ calendarEvents: data })
+    }
+
+    async function exchangeForOurToken(googleToken: string) {
+      const response = await myApi<DataEnvelope<{ user: User; token: string }>>(
+        'users/login',
+        { googleToken },
+        { method: 'POST' },
+      )
+      if (!response.isSuccess) {
+        addMessage(response.message || 'Login failed', 'danger')
+        return
+      }
+      const { user: loggedInUser, token: authToken } = response.data
+      user.value = loggedInUser
+      token.value = authToken
+    }
   }
 
   function logout() {

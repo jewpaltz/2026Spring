@@ -9,7 +9,7 @@ const cartStore = useCartStore();
 const sessionStore = useSessionStore();
 
 function login() {
-    sessionStore.login('emily.johnson@x.dummyjson.com', 'password');
+    sessionStore.login();
 }
 
 function toggleCart() {

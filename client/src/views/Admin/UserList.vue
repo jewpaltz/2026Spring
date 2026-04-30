@@ -19,6 +19,10 @@ watchDebounced(pagination, (newPagination) => {
 }, { debounce: 500, deep: true })
 
 async function remove(user: User) {
+    if (!user.id) {
+        console.error('User ID is missing, cannot delete user.')
+        return
+    }
     if (await confirm("Delete", `Are you sure that you want to delete ${user.firstName} ${user.lastName}?`)) {
         users.deleteUser(user.id)
     }
