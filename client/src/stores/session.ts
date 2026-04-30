@@ -16,6 +16,7 @@ export type FeedbackMessage = {
 export const useSessionStore = defineStore('session', () => {
   const user = ref<User | null>(null)
   const token = ref<string | null>(null)
+  const googleToken = ref<string | null>(null)
 
   async function login() {
     await loadScript('https://accounts.google.com/gsi/client', 'google-signin')
@@ -28,24 +29,11 @@ export const useSessionStore = defineStore('session', () => {
           throw new Error(response.error)
         }
         console.log({ response })
+        googleToken.value = response.access_token
         await exchangeForOurToken(response.access_token)
-        await getCalendarEvents(response.access_token)
       },
     })
     tokenClient.requestAccessToken()
-
-    async function getCalendarEvents(googleToken: string) {
-      const response = await fetch(
-        'https://www.googleapis.com/calendar/v3/calendars/primary/events',
-        {
-          headers: {
-            Authorization: `Bearer ${googleToken}`,
-          },
-        },
-      )
-      const data: gapi.client.calendar.Events = await response.json()
-      console.log({ calendarEvents: data })
-    }
 
     async function exchangeForOurToken(googleToken: string) {
       const response = await myApi<DataEnvelope<{ user: User; token: string }>>(
@@ -102,6 +90,7 @@ export const useSessionStore = defineStore('session', () => {
   return {
     user,
     token,
+    googleToken,
     login,
     logout,
     messages,

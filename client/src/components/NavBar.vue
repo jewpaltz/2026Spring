@@ -48,6 +48,10 @@ function toggleCart() {
                         Products
                     </RouterLink>
 
+                    <RouterLink to="/calendar" active-class="is-active" class="navbar-item">
+                        Calendar
+                    </RouterLink>
+
                     <RouterLink to="/about" active-class="is-active" class="navbar-item">
                         About
                     </RouterLink>
