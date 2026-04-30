@@ -5,7 +5,6 @@ import { userAddressKeys, userKeys, type User } from "../types"
 import data1 from "../data/users.json"
 import { PagingRequest } from "../types/dataEnvelopes"
 import { connect, filterKeys, toCamelCase, toSnakeCase } from "./supabase"
-import { error } from "console"
 
 const TABLE_NAME = "users"
 
@@ -53,39 +52,79 @@ export async function get(id: number): Promise<ItemType> {
 }
 
 export async function login(
-    email: string,
-    _password: string,
+    access_token: string,
+    provider: string = "google",
 ): Promise<{ token: string; user: ItemType }> {
-    const db = connect()
-    const result = await db
-        .from(TABLE_NAME)
-        .select("*")
-        .eq("email", email)
-        .single()
-    if (result.error) {
-        throw error
-    }
-    const user = toCamelCase(result.data) as ItemType
-    /* If we had passwords, we would verify them here.
-    if (!user || user.password !== _password) {
-        const error = { status: 401, message: "Invalid email or password" }
-        throw error
-    }
-    */
-    return new Promise((resolve, reject) => {
-        sign(
-            user,
-            process.env.JWT_SECRET || "secret",
-            { expiresIn: "1h" },
-            (err, token) => {
-                if (err || !token) {
-                    reject(err || new Error("Token generation failed"))
-                    return
+    switch (provider) {
+        case "google":
+            const response = await fetch(
+                "https://www.googleapis.com/oauth2/v3/userinfo",
+                {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                },
+            )
+            const googleUser =
+                (await response.json()) as gapi.client.oauth2.Userinfo
+
+            // If Google DOES give us an email, we can be CERTAIN that the user is who they say they are.
+            if (!googleUser.email) {
+                throw new Error("Google login failed: email not provided")
+            }
+
+            let user: ItemType
+            const db = connect()
+            const result = await db
+                .from(TABLE_NAME)
+                .select("*")
+                .eq("email", googleUser.email)
+                .single()
+            if (result.error) {
+                // If the error is something other than "no rows", we should throw it
+                if (result.error.code !== "PGRST116") {
+                    throw result.error
                 }
-                resolve({ token, user })
-            },
-        )
-    })
+            }
+            if (result.data) {
+                user = toCamelCase(result.data) as ItemType
+            } else {
+                // If user doesn't exist, create a new one
+                const newUser: ItemType = {
+                    firstName: googleUser.given_name ?? "",
+                    lastName: googleUser.family_name ?? "",
+                    email: googleUser.email ?? "",
+                    image: googleUser.picture,
+                    gender: googleUser.gender,
+                }
+                const createResult = await db
+                    .from(TABLE_NAME)
+                    .insert(toSnakeCase(newUser))
+                    .select()
+                    .single()
+                if (createResult.error) {
+                    throw createResult.error
+                }
+                user = toCamelCase(createResult.data) as ItemType
+            }
+
+            return new Promise((resolve, reject) => {
+                sign(
+                    user,
+                    process.env.JWT_SECRET || "secret",
+                    { expiresIn: "1h" },
+                    (err, token) => {
+                        if (err || !token) {
+                            reject(err || new Error("Token generation failed"))
+                            return
+                        }
+                        resolve({ token, user })
+                    },
+                )
+            })
+        default:
+            throw new Error("Unsupported provider")
+    }
 }
 
 export async function create(user: ItemType): Promise<ItemType> {

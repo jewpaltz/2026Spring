@@ -22,6 +22,8 @@
         "jsonwebtoken": "^9.0.3"
     },
     "devDependencies": {
+        "@types/gapi": "^0.0.47",
+        "@types/gapi.client.oauth2-v2": "^0.0.4",
         "@types/node": "^24.0.0",
         "@types/express": "^5.0.6",
         "@types/jsonwebtoken": "^9.0.10",

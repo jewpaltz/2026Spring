@@ -28,27 +28,11 @@ export const useSessionStore = defineStore('session', () => {
           throw new Error(response.error)
         }
         console.log({ response })
-        await setUser(response.access_token)
+        await exchangeForOurToken(response.access_token)
         await getCalendarEvents(response.access_token)
       },
     })
     tokenClient.requestAccessToken()
-
-    async function setUser(accessToken: string) {
-      const response = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      const data: gapi.client.oauth2.Userinfo = await response.json()
-      console.log({ data })
-      user.value = {
-        firstName: data.given_name ?? '',
-        lastName: data.family_name ?? '',
-        email: data.email ?? '',
-        image: data.picture ?? '',
-      }
-    }
 
     async function getCalendarEvents(googleToken: string) {
       const response = await fetch(

@@ -13,6 +13,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "types": ["node", "gapi", "gapi.client", "gapi.client.oauth2-v2"],
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,

@@ -48,10 +48,10 @@ app.get("/", requireAuth("admin"), async (req, res) => {
         res.send(response)
     })
     .post("/login", async (req, res) => {
-        const { email, password } = req.body
+        const { googleToken } = req.body
 
         const response: DataEnvelope<{ token: string; user: User }> = {
-            data: await login(email, password),
+            data: await login(googleToken, "google"),
             isSuccess: true,
         }
         res.send(response)
