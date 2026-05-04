@@ -1,0 +1,40 @@
+{
+    "name": "react_client",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.2.0",
+        "bulma": "^1.0.4",
+        "react": "^19.2.5",
+        "react-dom": "^19.2.5",
+        "react-router": "^7.14.2",
+        "zustand": "^5.0.12"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/google.accounts": "^0.0.18",
+        "@types/gapi": "^0.0.47",
+        "@types/gapi.client.calendar-v3": "^0.0.4",
+        "@types/gapi.client.drive-v3": "^0.0.5",
+        "@types/gapi.client.gmail-v1": "^0.0.4",
+        "@types/gapi.client.oauth2-v2": "^0.0.4",
+        "@types/node": "^24.12.2",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^6.0.1",
+        "eslint": "^10.2.1",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "eslint-plugin-react-refresh": "^0.5.2",
+        "globals": "^17.5.0",
+        "typescript": "~6.0.2",
+        "typescript-eslint": "^8.58.2",
+        "vite": "^8.0.10"
+    }
+}
