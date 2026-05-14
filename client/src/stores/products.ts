@@ -1,7 +1,7 @@
 /* B"H
  */
 
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { DataEnvelope, DataListEnvelope, Product } from '../../../server/types'
 import useSessionStore from './session'
@@ -12,12 +12,16 @@ export const useProductsStore = defineStore('products', () => {
   const products = ref<Product[]>([])
   const totalCount = ref<number | null>(null)
 
+  const isLoading = computed(() => session.isLoading)
+
   async function loadProducts(pagination?: PagingRequest) {
     const url = pagination
       ? `products?${new URLSearchParams(pagination as Record<string, string>)}`
       : 'products'
     const data = await session.api<DataListEnvelope<Product>>(url)
-    products.value = data.data
+
+    products.value.push(...data.data)
+
     totalCount.value = data.total
   }
 
@@ -62,5 +66,6 @@ export const useProductsStore = defineStore('products', () => {
     updateProduct,
     deleteProduct,
     totalCount,
+    isLoading,
   }
 })
