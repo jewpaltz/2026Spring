@@ -1,7 +1,9 @@
+import { BrowserRouter } from 'react-router'
+import NavBar from './components/NavBar'
+import RouterView from './router'
 
-const NavBar = () => <div>NavBar</div>
+
 const MessageList = () => <div>MessageList</div>
-const RouterView = () => <div>RouterView</div>
 const DialogBoxes = () => <div>DialogBoxes</div>
 
 const sessionStore = {
@@ -13,6 +15,7 @@ export default function App() {
 
   return (
     <>
+    <BrowserRouter>
         <NavBar />
           <div className="container">
             { sessionStore.isLoading &&
@@ -21,6 +24,7 @@ export default function App() {
             <RouterView />
           </div>
         <DialogBoxes />
+        </BrowserRouter>
     </>
   )
 }
